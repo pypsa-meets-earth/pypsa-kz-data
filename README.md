@@ -51,7 +51,11 @@ mv /pypsa-kz-data/data/custon_powerplants.csv data/custom_powerplants.csv
 
 2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz.yaml"`.
 
-Now, the whole workflow can be reproduced by executing
+Before the whole workflow can be executed, the databundle must be retrieved. This can be done via:
+```bash
+snakemake -j 1 retrieve_databundle_light
+```
+This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists. Finally, the whole workflow can be reproduced by executing
 ```bash
 snakemake -j 1 solve_everything
 ```
