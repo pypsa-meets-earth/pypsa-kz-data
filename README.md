@@ -38,6 +38,10 @@ git clone https://github.com/<user-name>/pypsa-kz-data
 Again, `<user-name>` must be replaced with the personal github-username.
 
 In order to install the pypsa-earth environment, instructions are provided in the pypsa-earth [documentation](https://pypsa-earth.readthedocs.io/en/latest/installation.html), see `Install dependencies` and `Python dependencies`.
+After installing the environment, activate it using
+```bash
+conda activate pypsa-earth
+```
 
 To adapt the overall workflow for kz, only two further changes are necessary:
 1. replace the `pypsa-earth/data/custom_powerplants.csv` with the provided `pypsa-kz-data/data/custom_powerplants.csv`. This can be done using the command:
