@@ -62,3 +62,6 @@ snakemake -j 1 solve_everything
 ```
 
 Results are generated and locally saved in `pypsa-earth/results/networks/`.
+
+# Potential errors:
+A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).
