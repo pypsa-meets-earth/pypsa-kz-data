@@ -107,9 +107,5 @@ if __name__ == "__main__":
 
     add_external_nodes(n, data_imp_exp)
 
-    n.export_to_netcdf(snakemake.input.network)
-
     # Snakemake output
-    dummy_log = snakemake.output["exports_dummy"]
-    with open(dummy_log, 'w') as f:
-        f.write('Done...') 
+    n.export_to_netcdf(snakemake.output.network)

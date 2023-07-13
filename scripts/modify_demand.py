@@ -45,7 +45,9 @@ def rescale_load(n, gadm_demand):
     
     scale_factor = (official_demand["Consumption (GWh)"] * 1e3) / pypsa_demand
     
-    n.loads_t.p_set.loc[:,official_demand.index] = n.loads_t.p_set.loc[:,official_demand.index] * scale_factor.loc[official_demand.index]
+    n.loads_t.p_set.loc[:,official_demand.index] = (
+        n.loads_t.p_set.loc[:,official_demand.index] * scale_factor.loc[official_demand.index]
+    )
 
 
 if __name__ == "__main__":
@@ -63,10 +65,5 @@ if __name__ == "__main__":
     
     rescale_load(n, gadm_demand)
 
-    n.export_to_netcdf(snakemake.input.network)
-
     # Snakemake output
-    dummy_log = snakemake.output["demand_dummy"]
-    with open(dummy_log, 'w') as f:
-        f.write('Done...')
-
+    n.export_to_netcdf(snakemake.output.network)
