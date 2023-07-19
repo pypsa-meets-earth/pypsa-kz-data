@@ -174,7 +174,7 @@ lines:
   under_construction: "zero" # 'zero': set capacity to zero, 'remove': remove, 'keep': with full capacity
   modify_lines:
     limit_line_capacities: true # limiting line capacities
-    bus_of_interest: ["KZ.11_1_AC", "KZ.14_1_AC", "KZ.3_1_AC"] # buses of interest whose lines are limited
+    bus_of_interest: ["KZ.1_1_AC", "KZ.9_1_AC"] # buses of interest whose lines are limited
     max_limit: 700.0 # maximum limit for s_nom
 
 links:
