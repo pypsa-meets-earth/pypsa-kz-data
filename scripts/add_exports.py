@@ -58,10 +58,11 @@ def add_external_nodes(n, data_imp_exp):
     ex_load_profile.index = n.snapshots
 
     for i in external_loads.index:
-        _, days = monthrange(2013, int(i)+1)
+        year = n.snapshots.year[0]
+        _, days = monthrange(int(year), int(i)+1)
         hourly_load = external_loads.loc[i]/(days*24)
         decimal = [0 if (int(i) + 1) < 10 else ""][0]
-        ex_load_profile.loc[f"2013-{decimal}{int(i)+1}",["RU", "KG", "UZ"]] = hourly_load.values
+        ex_load_profile.loc[f"{year}-{decimal}{int(i)+1}",["RU", "KG", "UZ"]] = hourly_load.values
 
     # creating three buses
     y_RU, x_RU = 55.064853, 61.509004
