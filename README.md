@@ -42,22 +42,26 @@ After installing the environment, activate it using
 ```bash
 conda activate pypsa-earth
 ```
-
-To adapt the overall workflow for kz, only two further changes are necessary:
-1. replace the `pypsa-earth/data/custom_powerplants.csv` with the provided `pypsa-kz-data/data/custom_powerplants.csv`. This can be done using the command:
-```bash
-mv /pypsa-kz-data/data/custon_powerplants.csv data/custom_powerplants.csv
-```
-
-2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz.yaml"`.
-
 Before the whole workflow can be executed, the databundle must be retrieved. This can be done via:
 ```bash
 snakemake -j 1 retrieve_databundle_light
 ```
-This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists. Finally, the whole workflow can be reproduced by executing
+This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists.
+
+To adapt the overall workflow for kz, only two further changes are necessary:
+1. replace the `pypsa-earth/data/custom_powerplants.csv` with the provided `pypsa-kz-data/data/custom_powerplants.csv`. This can be done using the command:
+```bash
+cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
+```
+
+2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz.yaml"`.
+
+Finally, the whole workflow can be reproduced by executing
 ```bash
 snakemake -j 1 solve_everything
 ```
 
 Results are generated and locally saved in `pypsa-earth/results/networks/`.
+
+# Potential errors:
+A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).

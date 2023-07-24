@@ -29,10 +29,10 @@ snapshots:
   inclusive: "left" # end is not inclusive
 
 enable:
-  retrieve_databundle: false #true  #  Recommended 'true', for the first run. Otherwise data might be missing.
+  retrieve_databundle: true # true  #  Recommended 'true', for the first run. Otherwise data might be missing.
   retrieve_cost_data: true  # true: retrieves cost data from technology data and saves in resources/costs.csv, false: uses cost data in data/costs.csv
   download_osm_data: true  # If 'true', OpenStreetMap data will be downloaded for the above given countries
-  build_natura_raster: false  # If True, than an exclusion raster will be build
+  build_natura_raster: true  # If True, than an exclusion raster will be build
   build_cutout: true #false
   # If "build_cutout" : true, then environmental data is extracted according to `snapshots` date range and `countries`
   # requires cds API key https://cds.climate.copernicus.eu/api-how-to
@@ -174,7 +174,7 @@ lines:
   under_construction: "zero" # 'zero': set capacity to zero, 'remove': remove, 'keep': with full capacity
   modify_lines:
     limit_line_capacities: true # limiting line capacities
-    bus_of_interest: ["KZ.11_1_AC", "KZ.14_1_AC", "KZ.3_1_AC"] # buses of interest whose lines are limited
+    bus_of_interest: ["KZ.1_1_AC", "KZ.9_1_AC"] # buses of interest whose lines are limited
     max_limit: 700.0 # maximum limit for s_nom
 
 links:
