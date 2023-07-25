@@ -64,9 +64,5 @@ if __name__ == "__main__":
 
     limit_line_capacities(n, boi, max_limit)
 
-    n.export_to_netcdf(snakemake.input.network)
-
     # Snakemake output
-    dummy_log = snakemake.output["lines_dummy"]
-    with open(dummy_log, 'w') as f:
-        f.write('Done...') 
+    n.export_to_netcdf(snakemake.output.network)
