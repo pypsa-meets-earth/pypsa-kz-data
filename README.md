@@ -48,20 +48,27 @@ snakemake -j 1 retrieve_databundle_light
 ```
 This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists.
 
-To adapt the overall workflow for kz, only two further changes are necessary:
+To adapt the overall workflow for kz, only three further changes are necessary:
 1. replace the `pypsa-earth/data/custom_powerplants.csv` with the provided `pypsa-kz-data/data/custom_powerplants.csv`. This can be done using the command:
 ```bash
 cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 ```
 
-2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz.yaml"`.
+2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz_default.yaml"`.
 
-Finally, the whole workflow can be reproduced by executing
+The whole workflow can be reproduced by executing
 ```bash
 snakemake -j 1 solve_everything
 ```
 
-Results are generated and locally saved in `pypsa-earth/results/networks/`.
+3. Only for scenarios: To run a certain scenario, make sure to update the config file. I.e. navigate to line 25 in the Snakefile, which now should read: `configfile: "pypsa-kz-data/config_kz_default.yaml"` and add a new line below with `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>.yaml"`. `<year>` and `<p>` must be replaced with existing years (2011, 2013, 2018) and discount rates (10 for optmisitic scenario, 15 for BAU and 20 for pessimistic scenario).
+
+Again, the whole workflow can be reproduced by executing the same command as above:
+```bash
+snakemake -j 1 solve_everything
+```
+
+Results are generated and locally saved in `pypsa-earth/results/<scenario_folder>/networks/`.
 
 # Potential errors:
 A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).

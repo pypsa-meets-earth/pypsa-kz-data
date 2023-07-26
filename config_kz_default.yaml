@@ -10,7 +10,7 @@ logging:
   format: "%(levelname)s:%(name)s:%(message)s"
 
 run:
-  name: "kz" # use this to keep track of runs with different settings
+  name: "kz_default" # use this to keep track of runs with different settings
   shared_cutouts: true  # set to true to share the default cutout(s) across runs
                         # Note: value false requires build_cutout to be enabled
 
@@ -18,7 +18,7 @@ scenario:
   simpl: ['']
   ll: ['v1.0']
   clusters: [14]
-  opts: [1H] #[Co2L-1H]
+  opts: [1H]
 
 countries: ["KZ"]
 # Can be replaced by country ["NG", "BJ"], continent ["Africa"] or user-specific region, see more at https://pypsa-earth.readthedocs.io/en/latest/configuration.html#top-level-configuration
@@ -33,7 +33,7 @@ enable:
   retrieve_cost_data: true  # true: retrieves cost data from technology data and saves in resources/costs.csv, false: uses cost data in data/costs.csv
   download_osm_data: true  # If 'true', OpenStreetMap data will be downloaded for the above given countries
   build_natura_raster: true  # If True, than an exclusion raster will be build
-  build_cutout: true #false
+  build_cutout: false #false
   # If "build_cutout" : true, then environmental data is extracted according to `snapshots` date range and `countries`
   # requires cds API key https://cds.climate.copernicus.eu/api-how-to
   # More information https://atlite.readthedocs.io/en/latest/introduction.html#datasets
