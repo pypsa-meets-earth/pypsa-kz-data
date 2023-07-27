@@ -11,7 +11,7 @@ scenario:
   simpl: ['']
   ll: ['v1.0']
   clusters: [14]
-  opts: [RES0.2-1H, RES0.15-1H, RES0.1-1H, RES0.05-1H] #[Co2L-1H]
+  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H]
 
 snapshots:
   start: "2011-01-01"
