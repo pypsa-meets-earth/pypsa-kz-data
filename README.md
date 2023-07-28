@@ -54,14 +54,14 @@ To adapt the overall workflow for kz, only three further changes are necessary:
 cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 ```
 
-2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz_default_<year>.yaml"`, where `<year>` represents an existing weather year (2011, 2013, 2018). 
+2. Open the Snakefile (in `pypsa-earth/`) and navigate to line 25, which should read `configfile: "config.yaml"`. Replace this line with `configfile: "pypsa-kz-data/config_kz_default.yaml"`. To run the default scenario for different weather years (2011, 2013, 2018), add a new line below (line 26) with `configfile: "pypsa-kz-data/config_kz_<year>.yaml"`. where `<year>` represents an existing weather year (2011, 2013, 2018). 
 
 The whole workflow can be reproduced by executing
 ```bash
 snakemake -j 1 solve_everything
 ```
 
-3. Only for scenarios: To run a certain scenario, make sure to update the config file. I.e. navigate to line 25 in the Snakefile, which now should read: `configfile: "pypsa-kz-data/config_kz_default_<year>.yaml"` and add a new line below with `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>.yaml"`. `<year>` and `<p>` must be replaced with existing years (2011, 2013, 2018) and discount rates (10 for optmisitic scenario, 15 for BAU and 20 for pessimistic scenario).
+3. Only for scenarios: To run a certain scenario, make sure to update the config file. I.e. navigate to line 25 in the Snakefile, which now should read: `configfile: "pypsa-kz-data/config_kz_default.yaml"` and add a new line below with `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>.yaml"`. `<year>` and `<p>` must be replaced with existing years (2011, 2013, 2018) and discount rates (10 for optimistic scenario, 15 for BAU and 20 for pessimistic scenario).
 
 Again, the whole workflow can be reproduced by executing the same command as above:
 ```bash
