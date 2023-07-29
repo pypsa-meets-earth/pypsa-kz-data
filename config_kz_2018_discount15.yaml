@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 run:
-  name: "kz_2011_discount20" # use this to keep track of runs with different settings
+  name: "kz_2018_discount15" # use this to keep track of runs with different settings
   shared_cutouts: true  # set to true to share the default cutout(s) across runs
                         # Note: value false requires build_cutout to be enabled
 
@@ -14,13 +14,13 @@ scenario:
   opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H]
 
 snapshots:
-  start: "2011-01-01"
-  end: "2012-01-01"
+  start: "2018-01-01"
+  end: "2019-01-01"
   inclusive: "left" # end is not inclusive
 
 load_options:
   ssp: "ssp2-2.6"
-  weather_year: 2011  # Load scenarios available with different weather year (different renewable potentials)
+  weather_year: 2018  # Load scenarios available with different weather year (different renewable potentials)
   prediction_year: 2030  # Load scenarios available with different prediction year (GDP, population)
   scale: 1  # scales all load time-series, i.e. 2 = doubles load
   rescale_demand: true
@@ -36,7 +36,7 @@ electricity:
 atlite:
   cutouts:
     # geographical bounds automatically determined from countries input
-    asia-2011-era5:
+    asia-2018-era5:
       module: era5
       dx: 0.3  # cutout resolution
       dy: 0.3  # cutout resolution
@@ -44,19 +44,19 @@ atlite:
 
 renewable:
   onwind:
-    cutout: asia-2011-era5
+    cutout: asia-2018-era5
   offwind-ac:
-    cutout: asia-2011-era5
+    cutout: asia-2018-era5
   offwind-dc:
-    cutout: asia-2011-era5
+    cutout: asia-2018-era5
   solar:
-    cutout: asia-2011-era5
+    cutout: asia-2018-era5
   hydro:
-    cutout: asia-2011-era5
+    cutout: asia-2018-era5
     normalization:
-      year: 2011
+      year: 2018
 
 costs:
   fill_values:
-    discount rate: 0.2
+    discount rate: 0.15
 
