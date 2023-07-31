@@ -1,0 +1,63 @@
+# SPDX-FileCopyrightText:  PyPSA-Earth and PyPSA-Eur Authors
+#
+# SPDX-License-Identifier: CC0-1.0
+
+run:
+  name: "kz_2018_discount20_coalexit" # use this to keep track of runs with different settings
+  shared_cutouts: true  # set to true to share the default cutout(s) across runs
+                        # Note: value false requires build_cutout to be enabled
+
+scenario:
+  simpl: ['']
+  ll: ['v1.0','copt']
+  clusters: [14]
+  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H]
+
+snapshots:
+  start: "2018-01-01"
+  end: "2019-01-01"
+  inclusive: "left" # end is not inclusive
+
+load_options:
+  ssp: "ssp2-2.6"
+  weather_year: 2018  # Load scenarios available with different weather year (different renewable potentials)
+  prediction_year: 2030  # Load scenarios available with different prediction year (GDP, population)
+  scale: 1  # scales all load time-series, i.e. 2 = doubles load
+  rescale_demand: true
+  external_loads: true # true - adds external load buses based on data/custom_data/electricity_exp-imp.csv
+
+electricity:
+  extendable_carriers:
+    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    StorageUnit: []
+    Store: [battery, H2]
+    Link: []
+  conventional_carriers: [nuclear, oil, OCGT, CCGT, lignite, geothermal, biomass]
+
+atlite:
+  cutouts:
+    # geographical bounds automatically determined from countries input
+    asia-2018-era5:
+      module: era5
+      dx: 0.3  # cutout resolution
+      dy: 0.3  # cutout resolution
+
+
+renewable:
+  onwind:
+    cutout: asia-2018-era5
+  offwind-ac:
+    cutout: asia-2018-era5
+  offwind-dc:
+    cutout: asia-2018-era5
+  solar:
+    cutout: asia-2018-era5
+  hydro:
+    cutout: asia-2018-era5
+    normalization:
+      year: 2018
+
+costs:
+  fill_values:
+    discount rate: 0.20
+
