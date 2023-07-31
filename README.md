@@ -61,7 +61,7 @@ The whole workflow can be reproduced by executing
 snakemake -j 1 solve_everything
 ```
 
-3. Only for scenarios: To run a certain scenario, make sure to update the config file. I.e. navigate to line 25 in the Snakefile, which now should read: `configfile: "pypsa-kz-data/config_kz_default.yaml"` and add a new line below with `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>.yaml"`. `<year>` and `<p>` must be replaced with existing years (2011, 2013, 2018) and discount rates (10 for optimistic scenario, 15 for BAU and 20 for pessimistic scenario).
+3. Only for scenarios: To run a certain scenario, make sure to update the config file. I.e. navigate to line 25 in the Snakefile, which now should read: `configfile: "pypsa-kz-data/config_kz_default.yaml"` and add a new line below with `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>.yaml"`. `<year>` and `<p>` must be replaced with existing years (2011, 2013, 2018) and discount rates (10 for optimistic scenario, 15 for BAU and 20 for pessimistic scenario). To run the coal exit scenario, the corresponding config file need to be referred in line 26 of `Snakemake`. This is performed by adding `configfile: "pypsa-kz-data/config_kz_<year>_discount<p>_coalexit.yaml"` in line 26, where `<year>` and `<p>` are the weather year (2011, 2013, 2018) and discount ratio (10, 15, and 20).
 
 Again, the whole workflow can be reproduced by executing the same command as above:
 ```bash
