@@ -5,12 +5,9 @@
 run:
   name: "kz_default_2018" # use this to keep track of runs with different settings
 
-
 snapshots:
   start: "2018-01-01"
   end: "2019-01-01"
-  inclusive: "left" # end is not inclusive
-
 
 load_options:
   weather_year: 2018  # Load scenarios available with different weather year (different renewable potentials)
@@ -18,12 +15,7 @@ load_options:
 
 atlite:
   cutouts:
-    # geographical bounds automatically determined from countries input
     asia-2018-era5:
-      module: era5
-      dx: 0.3  # cutout resolution
-      dy: 0.3  # cutout resolution
-
 
 renewable:
   onwind:
