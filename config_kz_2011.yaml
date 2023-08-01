@@ -9,21 +9,13 @@ run:
 snapshots:
   start: "2011-01-01"
   end: "2012-01-01"
-  inclusive: "left" # end is not inclusive
-
 
 load_options:
   weather_year: 2011  # Load scenarios available with different weather year (different renewable potentials)
 
-
 atlite:
   cutouts:
-    # geographical bounds automatically determined from countries input
     asia-2011-era5:
-      module: era5
-      dx: 0.3  # cutout resolution
-      dy: 0.3  # cutout resolution
-
 
 renewable:
   onwind:
