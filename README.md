@@ -1,3 +1,11 @@
+# About the Project
+
+<img src="https://github.com/pypsa-meets-earth/pypsa-kz-data/assets/53824825/ca7893de-26e2-47ad-a3e4-d91cd6716652" alt="Open Energy Transition Logo" width="280" height="100" align="right">
+<img src="https://github.com/pypsa-meets-earth/pypsa-kz-data/assets/53824825/63bd0250-c54a-4ce1-8df3-eb116baac01b" alt="Agora Energiewende Logo" width="240" height="100">
+<br>
+
+Agora Energiewende aims to model the Kazakh power system, incorporating a substantial increase in variable generation, such as solar and wind, surpassing the current official mid-term policy goal of 15% of all renewable energy sources (RES) in generation by 2030. This endeavor has received support from Open Energy Transition on the modeling side.
+
 # pypsa-kz-data
 Extra data for Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
@@ -70,7 +78,7 @@ snakemake -j 1 solve_everything
 
 Results are generated and locally saved in `pypsa-earth/results/<scenario_folder>/networks/`.
 
-# Potential errors:
+## Potential errors:
 - A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).
 
 - The workflow runs into an error during the `build_powerplants` rule. In this case, try to repeat step 1. of the workflow using the command
@@ -78,5 +86,5 @@ Results are generated and locally saved in `pypsa-earth/results/<scenario_folder
 cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 ```
 
-# Comes in handy:
+## Comes in handy:
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
