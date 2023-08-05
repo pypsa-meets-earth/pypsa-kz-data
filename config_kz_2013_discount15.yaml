@@ -25,6 +25,9 @@ electricity:
 atlite:
   cutouts:
     asia-2013-era5:
+      module: era5
+      dx: 0.3  # cutout resolution
+      dy: 0.3  # cutout resolution
 
 renewable:
   onwind:
