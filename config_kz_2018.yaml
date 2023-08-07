@@ -16,6 +16,9 @@ load_options:
 atlite:
   cutouts:
     asia-2018-era5:
+      module: era5
+      dx: 0.3  # cutout resolution
+      dy: 0.3  # cutout resolution
 
 renewable:
   onwind:
