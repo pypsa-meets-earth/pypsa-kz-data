@@ -86,7 +86,7 @@ Results are generated and locally saved in `pypsa-earth/results/<scenario_folder
 cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 ```
 
-- Unusual error arising from either Snakemake or the Snakefile and proving to be challenging to comprehend: Inspect all indentation. Ensure there is no tab spacing; employ only spaces, i.e., " ". It is probable that the indentations before "configfile: 'pypsa-kz-data'" are tabs instead of four spaces.
+- Unusual error arising from either Snakemake or the `Snakefile` and proving to be challenging to comprehend: Inspect all indentation. Ensure there is no tab spacing; employ only spaces, i.e., ` `. It is probable that the indentations before `configfile: 'pypsa-kz-data/config_kz_<...>.yaml'` are tabs instead of four spaces.
 
 ## Comes in handy:
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
