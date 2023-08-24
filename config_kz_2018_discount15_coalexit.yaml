@@ -7,6 +7,7 @@ run:
 
 scenario:
   ll: ['v1.0','copt']
+  opts: [1H]
 
 snapshots:
   start: "2018-01-01"
@@ -17,9 +18,8 @@ load_options:
 
 electricity:
   extendable_carriers:
-    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    Generator: [solar, onwind, offwind-ac, offwind-dc, coal]
     Store: [battery, H2]
-  conventional_carriers: [nuclear, oil, OCGT, CCGT, lignite, geothermal, biomass]
 
 atlite:
   cutouts:
