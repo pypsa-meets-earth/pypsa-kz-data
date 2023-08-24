@@ -49,6 +49,13 @@ def rescale_load(n, gadm_demand):
         n.loads_t.p_set.loc[:,official_demand.index] * scale_factor.loc[official_demand.index]
     )
 
+    if True in n.generators.query("carrier=='coal'").p_nom_extendable.unique():
+        n.generators.loc[n.generators.carrier=="coal","p_nom_max"] = (
+            n.generators.loc[n.generators.carrier=="coal","p_nom"]
+        )
+        n.generators.loc[n.generators.carrier=="coal", "p_nom"] = 0
+        n.generators.loc[n.generators.carrier=="coal", "p_nom_min"] = 0
+        
 
 if __name__ == "__main__":
     if "snakemake" not in globals():
