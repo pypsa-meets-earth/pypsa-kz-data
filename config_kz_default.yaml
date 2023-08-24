@@ -18,7 +18,7 @@ scenario:
   simpl: ['']
   ll: ['v1.0']
   clusters: [14]
-  opts: [1H]
+  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H, RES0.35-1H, RES0.4-1H]
 
 countries: ["KZ"]
 # Can be replaced by country ["NG", "BJ"], continent ["Africa"] or user-specific region, see more at https://pypsa-earth.readthedocs.io/en/latest/configuration.html#top-level-configuration

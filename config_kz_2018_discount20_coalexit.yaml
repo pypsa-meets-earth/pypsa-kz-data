@@ -6,9 +6,7 @@ run:
   name: "kz_2018_discount20_coalexit" # use this to keep track of runs with different settings
 
 scenario:
-  simpl: ['']
   ll: ['v1.0','copt']
-  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H]
 
 snapshots:
   start: "2018-01-01"
