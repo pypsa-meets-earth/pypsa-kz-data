@@ -50,7 +50,9 @@ def rescale_load(n, gadm_demand):
     )
 
     if True in n.generators.query("carrier=='coal'").p_nom_extendable.unique():
-        n.generators.loc[n.generators.carrier=="coal","p_nom_max"] = n.generators.loc[n.generators.carrier=="coal","p_nom"]
+        n.generators.loc[n.generators.carrier=="coal","p_nom_max"] = (
+            n.generators.loc[n.generators.carrier=="coal","p_nom"]
+        )
         n.generators.loc[n.generators.carrier=="coal", "p_nom"] = 0
         n.generators.loc[n.generators.carrier=="coal", "p_nom_min"] = 0
         
