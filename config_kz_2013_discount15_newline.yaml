@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText:  PyPSA-Earth and PyPSA-Eur Authors
+#
+# SPDX-License-Identifier: CC0-1.0
+
+run:
+  name: "kz_2013_discount15_newline" # use this to keep track of runs with different settings
+
+snapshots:
+  start: "2013-01-01"
+  end: "2014-01-01"
+
+new_line: True
+
+load_options:
+  weather_year: 2013  # Load scenarios available with different weather year (different renewable potentials)
+
+electricity:
+  extendable_carriers:
+    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    Store: [battery, H2]
+
+atlite:
+  cutouts:
+    asia-2013-era5:
+      module: era5
+      dx: 0.3  # cutout resolution
+      dy: 0.3  # cutout resolution
+
+renewable:
+  onwind:
+    cutout: asia-2013-era5
+  offwind-ac:
+    cutout: asia-2013-era5
+  offwind-dc:
+    cutout: asia-2013-era5
+  solar:
+    cutout: asia-2013-era5
+  hydro:
+    cutout: asia-2013-era5
+    normalization:
+      year: 2013
+
+costs:
+  fill_values:
+    discount rate: 0.15
+
