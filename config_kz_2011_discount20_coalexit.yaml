@@ -7,7 +7,7 @@ run:
 
 scenario:
   ll: ['v1.0','copt']
-  opts: [1H]
+  opts: [1H, RES0.4-1H]
 
 snapshots:
   start: "2011-01-01"
