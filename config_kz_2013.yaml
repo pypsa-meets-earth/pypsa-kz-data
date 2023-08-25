@@ -12,7 +12,6 @@ snapshots:
 load_options:
   weather_year: 2013  # Load scenarios available with different weather year (different renewable potentials)
 
-
 atlite:
   cutouts:
     asia-2013-era5:

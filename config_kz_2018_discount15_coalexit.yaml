@@ -6,9 +6,8 @@ run:
   name: "kz_2018_discount15_coalexit" # use this to keep track of runs with different settings
 
 scenario:
-  simpl: ['']
   ll: ['v1.0','copt']
-  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H]
+  opts: [1H, RES0.4-1H]
 
 snapshots:
   start: "2018-01-01"
@@ -19,9 +18,8 @@ load_options:
 
 electricity:
   extendable_carriers:
-    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    Generator: [solar, onwind, offwind-ac, offwind-dc, coal]
     Store: [battery, H2]
-  conventional_carriers: [nuclear, oil, OCGT, CCGT, lignite, geothermal, biomass]
 
 atlite:
   cutouts:

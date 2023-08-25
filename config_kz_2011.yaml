@@ -5,7 +5,6 @@
 run:
   name: "kz_default_2011" # use this to keep track of runs with different settings
 
-
 snapshots:
   start: "2011-01-01"
   end: "2012-01-01"
