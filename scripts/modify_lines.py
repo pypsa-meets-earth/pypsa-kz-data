@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
     limit_line_capacities(n, boi, max_limit)
 
-    if snakemake.config.get('new_line', True):
+    if snakemake.config.get('new_line', False):
         add_line(n)
 
     # Snakemake output
