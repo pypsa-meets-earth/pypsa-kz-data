@@ -9,7 +9,9 @@ snapshots:
   start: "2013-01-01"
   end: "2014-01-01"
 
-new_line: True
+lines:
+  modify_lines:
+    new_line_kz: True
 
 load_options:
   weather_year: 2013  # Load scenarios available with different weather year (different renewable potentials)
