@@ -48,6 +48,13 @@ def limit_line_capacities(n, boi, max_limit):
             if n.lines.loc[line, 's_nom'] >= max_limit:
                 n.lines.loc[line, 's_nom'] = max_limit
 
+def add_line(n):
+    extra_line = n.lines.loc[["2"]].copy()
+    extra_line.bus0 = "KZ.3_1_AC"
+    extra_line.bus1 = "KZ.4_1_AC"
+    extra_line.index = ["21"]
+    n.import_components_from_dataframe(extra_line, "Line")
+
 
 if __name__ == "__main__":
     if "snakemake" not in globals():
@@ -63,6 +70,9 @@ if __name__ == "__main__":
     max_limit = snakemake.config["lines"]["modify_lines"]["max_limit"]
 
     limit_line_capacities(n, boi, max_limit)
+
+    if snakemake.config["lines"]["modify_lines"].get('new_line_kz', False):
+        add_line(n)
 
     # Snakemake output
     n.export_to_netcdf(snakemake.output.network)
