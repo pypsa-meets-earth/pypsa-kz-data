@@ -14,11 +14,12 @@ import pandas as pd
 import sys
 sys.path.append("scripts/")
 from _helpers import configure_logging
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
 
-def rescale_load(n, gadm_demand):
+def rescale_load(n, gadm_demand, scale):
     """
     Rescales demand profiles of each GADM region based on the official 
     national report.
@@ -43,7 +44,7 @@ def rescale_load(n, gadm_demand):
     
     pypsa_demand = n.loads_t.p_set.sum(axis=0)
     
-    scale_factor = (official_demand["Consumption (GWh)"] * 1e3) / pypsa_demand
+    scale_factor = (official_demand["Consumption (GWh)"] * 1e3) / pypsa_demand *scale
     
     n.loads_t.p_set.loc[:,official_demand.index] = (
         n.loads_t.p_set.loc[:,official_demand.index] * scale_factor.loc[official_demand.index]
@@ -69,8 +70,10 @@ if __name__ == "__main__":
     
     # Snakemake imports:
     gadm_demand = snakemake.input["gadm_demand_data"]
-    
-    rescale_load(n, gadm_demand)
+    start_date = datetime.strptime(snakemake.config["snapshots"]["start"], "%Y-%m-%d")
+    end_date =datetime.strptime( snakemake.config["snapshots"]["end"], "%Y-%m-%d")
+    scale = snakemake.config["load_options"]["scale"] *(end_date-start_date).days/365
+    rescale_load(n, gadm_demand,scale)
 
     # Snakemake output
     n.export_to_netcdf(snakemake.output.network)
