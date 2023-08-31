@@ -50,6 +50,9 @@ def memory(w):
 
 
 rule solve_network_dle:
+    params:
+        solving=config["solving"],
+        augmented_line_connection=config["augmented_line_connection"],
     input:
         "networks/" + RDIR + "elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_dle.nc",
     output:
