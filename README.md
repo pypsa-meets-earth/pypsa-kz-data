@@ -25,6 +25,8 @@ Monthly electricity demand data with monthly aggregation provided by Kazakhstan 
 
 # Model Execution
 
+## Setting up the general repositories
+
 The provided workflow builds on [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth). Therefore, first, the PyPSA-Earth repository must be forked and the fork should then be cloned. A fork can be created by navigating to the [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) website. By clicking on the fork-symbol in the upper right corner, a fork is created and linked to the specific user.
 
 Next, we also need to fork the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) repository. A fork can be created by navigating to the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) website and clicking the fork symbol in the upper right corner.
@@ -51,12 +53,16 @@ After installing the environment, activate it using
 conda activate pypsa-earth
 ```
 
-Firstly, to adapt the overall workflow for kz, only two further changes are necessary: Open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
+## Modeling adaptations for KZ study
+
+To adapt the overall workflow for kz, only two further changes are necessary.
+
+Firstly, open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
 ```bash
 os.system("snakemake -j all solve_all_networks --rerun-incomplete")
 os.system("snakemake -j1 make_statistics --force")
 ```
-Replace these two lines with
+and replace these two lines with
 ```bash
 os.system(f"snakemake -j1 networks/{wildcards.scenario_name}/base.nc")
 os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv")
@@ -70,7 +76,9 @@ cp pypsa-kz-data/config.kz_default.yaml config.yaml
 
 Done!
 
-Now, to run all scenarios for all weather years (2011, 2013, 2018), execute first
+## Running KZ scenarios
+
+To run all scenarios for all considered weather years (2011, 2013, 2018), execute first
 ```bash
 snakemake -j1 prepare_kz_scenarios
 ```
