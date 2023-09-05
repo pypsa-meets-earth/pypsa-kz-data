@@ -88,7 +88,7 @@ snakemake -j1 run_all_scenarios
 ```
 All results are generated and locally saved in `pypsa-earth/results/<scenario_folder>/networks/`.
 
-## Potential errors:
+# Potential errors
 - A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).
 
 - The workflow runs into an error during the `build_powerplants` rule. In this case, try to repeat step 1. of the workflow using the command
@@ -109,5 +109,5 @@ are tabs instead of four spaces.
 snakemake -j 1 retrieve_databundle_light
 ```
 
-## Comes in handy:
+# Comes in handy
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
