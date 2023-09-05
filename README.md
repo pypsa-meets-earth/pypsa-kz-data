@@ -56,7 +56,7 @@ snakemake -j 1 retrieve_databundle_light
 ```
 This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists.
 
-To adapt the overall workflow for kz, only one further change is necessary: Open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
+Firstly, to adapt the overall workflow for kz, only two further changes are necessary: Open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
 ```bash
 os.system("snakemake -j all solve_all_networks --rerun-incomplete")
 os.system("snakemake -j1 make_statistics --force")
@@ -66,6 +66,11 @@ Replace these two lines with
 os.system(f"snakemake -j1 networks/{wildcards.scenario_name}/base.nc")
 os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv")
 os.system("snakemake -j1 solve_everything --rerun-incomplete")
+```
+
+Secondly, copy the default configuration file to the pypsa-earth folder using:
+```bash
+cp pypsa-kz-data/config.kz_default.yaml config.yaml
 ```
 
 Done!

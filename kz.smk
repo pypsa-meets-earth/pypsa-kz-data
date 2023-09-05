@@ -95,7 +95,6 @@ rule solve_everything:
 rule prepare_kz_scenarios:
     run:
         import os
-        os.system("cp pypsa-kz-data/config.kz_default.yaml config.default.yaml")
         os.system("rm configs/scenarios/config.NG.yaml")
         os.system("cp -r pypsa-kz-data/scenarios/ configs/")
 
