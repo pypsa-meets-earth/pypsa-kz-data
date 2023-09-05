@@ -82,7 +82,7 @@ To prepare running all scenarios, execute
 ```bash
 snakemake -j1 prepare_kz_scenarios
 ```
-Optionally, to save time for future runs, you can now set `enable: retrieve_databundle: True` in the `config.yaml` to `False`.
+Optionally, to save time for future runs, you can now set `enable: retrieve_databundle: True` in the `config.yaml` to `False`. If you already have build all cutouts for 2011, 2013 and 2018, you can also set `enable: build_cutout: True` to `False`.
 Finally, to run all scenarios, execute
 ```bash
 snakemake -j1 run_all_scenarios
@@ -110,6 +110,8 @@ are tabs instead of four spaces.
 ```bash
 snakemake -j 1 retrieve_databundle_light
 ```
+
+- The rule `retrieve_databundle_light` always executes with an error. To avoid this, try setting `enable: build_cutout: False` to `True`.
 
 # Comes in handy
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
