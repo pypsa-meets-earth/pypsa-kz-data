@@ -78,15 +78,17 @@ Done!
 
 ## Running KZ scenarios
 
-To run all scenarios for all considered weather years (2011, 2013, 2018), execute first
+To prepare running all scenarios, execute
 ```bash
 snakemake -j1 prepare_kz_scenarios
 ```
-followed by
+Optionally, to save time for future runs, you can now set `enable: retrieve_databundle: True` in the `config.yaml` to `False`.
+Finally, to run all scenarios, execute
 ```bash
 snakemake -j1 run_all_scenarios
 ```
-All results are generated and locally saved in `pypsa-earth/results/<scenario_folder>/networks/`.
+
+After all scenarios have executed successfully, all results are generated and locally saved in `pypsa-earth/results/<scenario_folder>/networks/`.
 
 # Potential errors
 - A rule is killed. In this case, open the `Snakefile` in `pypsa-earth` or open `kz.smk` in `pypsa-kz-data` (depending on the rule which is killed), navigate to the rule that is being killed in the workflow and increase the memory assignment (for example, add a 0 at the end).
