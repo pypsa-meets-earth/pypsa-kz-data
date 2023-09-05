@@ -50,11 +50,6 @@ After installing the environment, activate it using
 ```bash
 conda activate pypsa-earth
 ```
-Before the whole workflow can be executed, the databundle must be retrieved. This can be done via:
-```bash
-snakemake -j 1 retrieve_databundle_light
-```
-This step can optionally be skipped if the `data/` folder with all relevant subfolders already exists.
 
 Firstly, to adapt the overall workflow for kz, only two further changes are necessary: Open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
 ```bash
@@ -100,6 +95,11 @@ os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.
 os.system("snakemake -j1 solve_everything --rerun-incomplete")
 ```
 are tabs instead of four spaces.
+
+- Missing `data/` folder or some relevant subfolders. This should normally be executed automatically when executing the rule `prepare_kz_scenarios`, however might be missing due to incorrect execution. The databundle can be also retrieved manually via:
+```bash
+snakemake -j 1 retrieve_databundle_light
+```
 
 ## Comes in handy:
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!

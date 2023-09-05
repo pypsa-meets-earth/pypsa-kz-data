@@ -97,4 +97,5 @@ rule prepare_kz_scenarios:
         import os
         os.system("rm configs/scenarios/config.NG.yaml")
         os.system("cp -r pypsa-kz-data/scenarios/ configs/")
+        os.system("snakemake -j1 retrieve_databundle_light")
 
