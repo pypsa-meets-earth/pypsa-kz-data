@@ -71,10 +71,14 @@ os.system("snakemake -j1 solve_everything --rerun-incomplete")
 
 Secondly, copy the default configuration file to the pypsa-earth folder using:
 ```bash
+cp pypsa-kz-data/config.kz_default.yaml config.default.yaml
+```
+In case you already have a custom config file, make sure to replace it as well, using
+```bash
 cp pypsa-kz-data/config.kz_default.yaml config.yaml
 ```
 
-Done!
+You are now all set to run all scenarios!
 
 ## Running KZ scenarios
 
