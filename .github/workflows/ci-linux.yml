@@ -3,10 +3,10 @@ name: linux test
 on:
   push:
     branches:
-    - ci-linux   # will be changed to main then
+    - ci-linux
   pull_request:
     branches:
-    - ci-linux   # will be changed to main then
+    - ci-linux
   schedule:
   - cron: "0 5 * * TUE"
 
@@ -39,11 +39,10 @@ jobs:
         cd ..
         git clone https://github.com/pypsa-meets-earth/pypsa-earth.git
 
-    - name: Prepare dataset
+    - name: Organize folder structure
       run: |
-        mv ../pypsa-earth/* ..
         cd ..
-        cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
+        cp -r pypsa-kz-data ./pypsa-earth/pypsa-kz-data
 
     - name: Setup Mambaforge
       uses: conda-incubator/setup-miniconda@v2
@@ -62,7 +61,9 @@ jobs:
 
     - name: Update environment due to outdated or unavailable cache
       if: steps.cache.outputs.cache-hit != 'true'
-      run: mamba env update -n pypsa-earth -f ../envs/environment.yaml
+      run: |
+        ls
+        mamba env update -n pypsa-earth -f ../pypsa-earth/envs/environment.yaml
 
     - name: Conda list
       run: |
@@ -70,7 +71,7 @@ jobs:
 
     - name: Test workflow
       run: |
-        cp test/config_kz_test.yaml ../config.yaml
-        cd ..
-        snakemake -j1 retrieve_databundle_light 
-        snakemake -j1 solve_everything 
+        cd ../pypsa-earth
+        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv
+        cp pypsa-kz-data/test/config_kz_test.yaml ./config.yaml
+        snakemake -j1 solve_everything --forceall
