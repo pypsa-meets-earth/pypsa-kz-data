@@ -362,15 +362,7 @@ solving:
     track_iterations: false
     #nhours: 10
   solver:
-    name: gurobi
-    threads: 4
-    method: 2 # barrier (=ipm)
-    crossover: 0
-    BarConvTol: 1.e-5
-    FeasibilityTol: 1.e-6
-    AggFill: 0
-    PreDual: 0
-    GURO_PAR_BARDENSETHRESH: 200
+    name: glpk
 
 
 plotting:
