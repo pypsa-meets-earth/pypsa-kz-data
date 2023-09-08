@@ -72,6 +72,7 @@ jobs:
     - name: Test workflow
       run: |
         cd ../pypsa-earth
-        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv
         cp pypsa-kz-data/test/config_kz_test.yaml ./config.yaml
-        snakemake -j1 solve_everything --forceall
+        snakemake -j1 retrieve_databundle_light
+        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv
+        snakemake -j1 solve_everything
