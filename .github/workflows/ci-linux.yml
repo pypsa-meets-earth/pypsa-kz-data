@@ -69,10 +69,21 @@ jobs:
       run: |
         conda list
 
-    - name: Test workflow
+    - name: Move test config
       run: |
         cd ../pypsa-earth
-        cp pypsa-kz-data/test/config_kz_test.yaml ./config.yaml
-        snakemake -j1 retrieve_databundle_light
-        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv
+        cp pypsa-kz-data/test/config_kz_test.yaml ./test/config.custom.yaml
+        
+    - name: Create test configs
+      run: |
+        cd ../pypsa-earth
+        snakemake --cores all build_test_configs
+
+    - name: Test pypsa-kz-data workflow
+      run: |
+        cd ../pypsa-earth
+        cp ./test/tmp/config.custom_tmp.yaml ./config.yaml
+        snakemake -j1 retrieve_databundle_light  # we first retrieve data
+        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
         snakemake -j1 solve_everything
+        
