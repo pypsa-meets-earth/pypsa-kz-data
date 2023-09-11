@@ -73,7 +73,7 @@ if __name__ == "__main__":
     start_date = datetime.strptime(snakemake.config["snapshots"]["start"], "%Y-%m-%d")
     end_date =datetime.strptime( snakemake.config["snapshots"]["end"], "%Y-%m-%d")
     scale = snakemake.config["load_options"]["scale"] *(end_date-start_date).days/365
-    rescale_load(n, gadm_demand,scale)
+    rescale_load(n, gadm_demand, scale)
 
     # Snakemake output
     n.export_to_netcdf(snakemake.output.network)
