@@ -41,14 +41,20 @@ def rescale_load(n, gadm_demand, scale):
     logger.info(f"Rescaling GADM demand profile based on national report")
 
     official_demand = pd.read_csv(gadm_demand, index_col=0)
-    
+    official_demand = official_demand["Consumption (GWh)"] * 1e3
+
+    # regional scaling to official demand is not adjusted to global scaling factor
+    n.loads_t.p_set /= snakemake.config["load_options"]["scale"]
     pypsa_demand = n.loads_t.p_set.sum(axis=0)
     
-    scale_factor = (official_demand["Consumption (GWh)"] * 1e3) / pypsa_demand *scale
+    scale_factor = official_demand / pypsa_demand * scale
     
     n.loads_t.p_set.loc[:,official_demand.index] = (
         n.loads_t.p_set.loc[:,official_demand.index] * scale_factor.loc[official_demand.index]
     )
+
+    # regional scaling to official demand is not adjusted to global scaling factor
+    n.loads_t.p_set *= snakemake.config["load_options"]["scale"]
 
     if True in n.generators.query("carrier=='coal'").p_nom_extendable.unique():
         n.generators.loc[n.generators.carrier=="coal","p_nom_max"] = (
@@ -71,9 +77,9 @@ if __name__ == "__main__":
     # Snakemake imports:
     gadm_demand = snakemake.input["gadm_demand_data"]
     start_date = datetime.strptime(snakemake.config["snapshots"]["start"], "%Y-%m-%d")
-    end_date =datetime.strptime( snakemake.config["snapshots"]["end"], "%Y-%m-%d")
-    scale = snakemake.config["load_options"]["scale"] *(end_date-start_date).days/365
-    rescale_load(n, gadm_demand,scale)
+    end_date = datetime.strptime( snakemake.config["snapshots"]["end"], "%Y-%m-%d")
+    scale = (end_date-start_date).days/365
+    rescale_load(n, gadm_demand, scale)
 
     # Snakemake output
     n.export_to_netcdf(snakemake.output.network)

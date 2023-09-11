@@ -11,6 +11,7 @@ snapshots:
 
 load_options:
   weather_year: 2011  # Load scenarios available with different weather year (different renewable potentials)
+  scale_kz: 1.3705
 
 electricity:
   extendable_carriers:
