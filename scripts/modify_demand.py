@@ -72,7 +72,8 @@ if __name__ == "__main__":
     gadm_demand = snakemake.input["gadm_demand_data"]
     start_date = datetime.strptime(snakemake.config["snapshots"]["start"], "%Y-%m-%d")
     end_date =datetime.strptime( snakemake.config["snapshots"]["end"], "%Y-%m-%d")
-    scale = snakemake.config["load_options"]["scale"] *(end_date-start_date).days/365
+    scale = (end_date-start_date).days/365
+    print(scale)
     rescale_load(n, gadm_demand, scale)
 
     # Snakemake output
