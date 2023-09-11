@@ -300,7 +300,7 @@ renewable:
     # PHS_max_hours: 6
     # hydro_max_hours: "energy_capacity_totals_by_country"  # not active
     # clip_min_inflow: 1.0
-    # extendable: true
+    extendable: true
     normalization:
       method: eia #hydro_capacities  # 'hydro_capacities' to rescale country hydro production by using hydro_capacities, 'eia' to rescale by eia data, false for no rescaling
       year: 2013  # (optional) year of statistics used to rescale the runoff time series. When not provided, the weather year of the snapshots is used
