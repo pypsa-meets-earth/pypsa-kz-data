@@ -42,39 +42,11 @@ cluster_options:
 
 
 build_shape_options:
-  # gadm_layer_id: 1  # GADM level area used for the gadm_shapes. Codes are country-dependent but roughly: 0: country, 1: region/county-like, 2: municipality-like
-  # update_file: false  # When true, all the input files are downloaded again and replace the existing files
-  # out_logging: true  # When true, logging is printed to console
-  # year: 2020  # reference year used to derive shapes, info on population and info on GDP
   nprocesses: 1  # number of processes to be used in build_shapes
   nchunks: 3  # number of data chuncks for build_shapes. If not specified or smaller than nprocesses, specified as nprocesses
-  # worldpop_method: "standard"  # "standard" pulls from web 1kmx1km raster, "api" pulls from API 100mx100m raster, false (not "false") no pop addition to shape which is useful when generating only cutout
-  # gdp_method: "standard"  # "standard" pulls from web 1x1km raster, false (not "false") no gdp addition to shape which useful when generating only cutout
-  # contended_flag: "set_by_country" # "set_by_country" assigns the contended areas to the countries according to the GADM database, "drop" drops these contended areas from the model
 
-# clean_osm_data_options:  # osm = OpenStreetMap
-#   names_by_shapes: true  # Set the country name based on the extended country shapes
-#   threshold_voltage: 35000  # [V] assets below that voltage threshold will not be used (cable, line, generator, etc.)
-#   tag_substation: "transmission"  # Filters only substations with 'transmission' tag, ('distribution' also available)
-#   add_line_endings: true  # When "True", then line endings are added to the dataset of the substations
-#   generator_name_method: OSM  # Methodology to specify the name to the generator. Options: OSM (name as by OSM dataset), closest_city (name by the closest city)
-
-# build_osm_network:  # Options of the build_osm_network script; osm = OpenStreetMap
-#   group_close_buses: true  # When "True", close buses are merged and guarantee the voltage matching among line endings
-#   group_tolerance_buses: 5000  # [m] (default 5000) Tolerance in meters of the close buses to merge
-#   split_overpassing_lines: true  # When True, lines overpassing buses are splitted and connected to the bueses
-#   overpassing_lines_tolerance: 1  # [m] (default 1) Tolerance to identify lines overpassing buses
-#   force_ac: false  # When true, it forces all components (lines and substation) to be AC-only. To be used if DC assets create problem.
-
-# base_network:
-#   min_voltage_substation_offshore: 35000  # [V] minimum voltage of the offshore substations
-#   min_voltage_rebase_voltage: 35000  # [V] minimum voltage in base network
 
 load_options:
-  # ssp: "ssp2-2.6" # shared socio-economic pathway (GDP and population growth) scenario to consider
-  # weather_year: 2013  # Load scenarios available with different weather year (different renewable potentials)
-  # prediction_year: 2030  # Load scenarios available with different prediction year (GDP, population)
-  # scale: 1  # scales all load time-series, i.e. 2 = doubles load
   rescale_demand: true
   external_loads: true # true - adds external load buses based on data/custom_data/electricity_exp-imp.csv
 
@@ -83,66 +55,30 @@ electricity:
   voltages: [110., 220., 500.]
   co2limit: 7.75e+11  # European default, 0.05 * 3.1e9*0.5, needs to be adjusted for Africa
   co2base: 3.17e+8  # Kazakhstan default for 1990
-  # agg_p_nom_limits: data/agg_p_nom_minmax.csv
-  # hvdc_as_lines: false  # should HVDC lines be modeled as `Line` or as `Link` component?
 
-  # operational_reserve: # like https://genxproject.github.io/GenX/dev/core/#Reserves
-  #   activate: false
-  #   epsilon_load: 0.02 # share of total load
-  #   epsilon_vres: 0.02 # share of total renewable supply
-  #   contingency: 0 # fixed capacity in MW
-
-  # max_hours:
-  #   battery: 6
-  #   H2: 168
 
   extendable_carriers:
     Generator: [solar, onwind, offwind-ac, offwind-dc]  
-    # StorageUnit: []  # battery, H2
-    # Store: [battery, H2] # [battery, H2]
-    # Link: []  # H2 pipeline
 
-  # powerplants_filter: (DateOut >= 2022 or DateOut != DateOut)
+
   custom_powerplants: replace #merge #replace # "false" - no custom powerplants, "merge" use both open source and custom powerplants, "replace" use only custom powerplants
 
-  # conventional_carriers: [nuclear, oil, OCGT, CCGT, coal, lignite, geothermal, biomass]
-  # renewable_carriers: [solar, onwind, offwind-ac, offwind-dc, hydro]
 
   estimate_renewable_capacities:
     stats: False #'irena'  # False, = greenfield expansion, 'irena' uses IRENA stats to add expansion limits
-    # year: 2020  # Reference year, available years for IRENA stats are 2000 to 2020
-    # p_nom_min: 1  # any float, scales the minimum expansion acquired from stats, i.e. 110% of <years>'s capacities => p_nom_min: 1.1
-    # p_nom_max: false  # sets the expansion constraint, False to deactivate this option and use estimated renewable potentials determine by the workflow, float scales the p_nom_min factor accordingly
-    # technology_mapping:
-    #   # Wind is the Fueltype in ppm.data.Capacity_stats, onwind, offwind-{ac,dc} the carrier in PyPSA-Earth
-    #   Offshore: [offwind-ac, offwind-dc]
-    #   Onshore: [onwind]
-    #   PV: [solar]
+
 
 lines:
   types:
     220.: "490-AL1/64-ST1A 220.0"             #"Al/St 240/40 2-bundle 220.0"
     110.: "243-AL1/39-ST1A 110.0"             #"Al/St 240/40 3-bundle 300.0"
     500.: "Al/St 240/40 4-bundle 380.0"       #"Al/St 560/50 4-bundle 750.0"       #
-  # dc_type: "HVDC XLPE 1000"
-  # s_max_pu: 0.7
-  # s_nom_max: .inf
-  # length_factor: 1.25
-  # under_construction: "zero" # 'zero': set capacity to zero, 'remove': remove, 'keep': with full capacity
+
   modify_lines:
     limit_line_capacities: true # limiting line capacities
     bus_of_interest: ["KZ.1_1_AC", "KZ.9_1_AC"] # buses of interest whose lines are limited
     max_limit: 700.0 # maximum limit for s_nom
 
-# links:
-#   p_max_pu: 1.0
-#   p_nom_max: .inf
-#   under_construction: "zero" # 'zero': set capacity to zero, 'remove': remove, 'keep': with full capacity
-
-# transformers:
-#   x: 0.1
-#   s_nom: 2000.
-#   type: ""
 
 atlite:
   nprocesses: 4
@@ -152,11 +88,6 @@ atlite:
       module: era5
       dx: 0.3  # cutout resolution
       dy: 0.3  # cutout resolution
-      # The cutout time is automatically set by the snapshot range. See `snapshot:` option above and 'build_cutout.py'.
-      # time: ["2013-01-01", "2014-01-01"]  # to manually specify a different weather year (~70 years available)
-      # The cutout spatial extent [x,y] is automatically set by country selection. See `countires:` option above and 'build_cutout.py'.
-      # x: [-12., 35.]  # set cutout range manual, instead of automatic by boundaries of country
-      # y: [33., 72]    # manual set cutout range
 
 
 renewable:
