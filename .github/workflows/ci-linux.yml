@@ -3,10 +3,10 @@ name: linux test
 on:
   push:
     branches:
-    - ci-linux
+    - main
   pull_request:
     branches:
-    - ci-linux
+    - main
   schedule:
   - cron: "0 5 * * TUE"
 
