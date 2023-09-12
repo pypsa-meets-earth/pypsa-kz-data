@@ -18,7 +18,7 @@ scenario:
   simpl: ['']
   ll: ['v1.0']
   clusters: [14]
-  opts: [RES0.2-1H, RES0.25-1H, RES0.3-1H, RES0.35-1H, RES0.4-1H]
+  opts: [BAU-RES0.2-1H, BAU-RES0.25-1H, BAU-RES0.3-1H, BAU-RES0.35-1H, BAU-RES0.4-1H]
 
 countries: ["KZ"]
 # Can be replaced by country ["NG", "BJ"], continent ["Africa"] or user-specific region, see more at https://pypsa-earth.readthedocs.io/en/latest/configuration.html#top-level-configuration
@@ -128,6 +128,10 @@ electricity:
   co2base: 3.17e+8  # Kazakhstan default for 1990
   agg_p_nom_limits: data/agg_p_nom_minmax.csv
   hvdc_as_lines: false  # should HVDC lines be modeled as `Line` or as `Link` component?
+  BAU_maxcapacities:
+    solar: 1e9 # essentially no limit
+    onwind: 1e9 # essentially no limit
+    ror: 2.133e3 # limit in MW (2030 projection taken from https://kea.kz/storage/app/media/NPA%20NTD/ministra-energetiki-respubliki-kazakhstan-ot-24-marta-2022-goda-104-ob-utverzhdenii-energeticheskogo-balansa-respubliki-ka.pdf)
 
   operational_reserve: # like https://genxproject.github.io/GenX/dev/core/#Reserves
     activate: false
