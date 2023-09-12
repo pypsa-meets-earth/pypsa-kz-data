@@ -1,4 +1,4 @@
-name: linux test
+name: CI-Linux
 
 on:
   push:
