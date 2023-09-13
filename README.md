@@ -9,6 +9,7 @@ Agora Energiewende aims to model the Kazakh power system, incorporating a substa
 ## Development status: Active and Stable
 
 [![CI-Linux](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml/badge.svg?branch=main&event=push)](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml)
+![Size](https://img.shields.io/github/repo-size/pypsa-meets-earth/pypsa-kz-data)
 
 
 # pypsa-kz-data
