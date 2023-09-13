@@ -6,6 +6,13 @@
 
 Agora Energiewende aims to model the Kazakh power system, incorporating a substantial increase in variable generation, such as solar and wind, surpassing the current official mid-term policy goal of 15% of all renewable energy sources (RES) in generation by 2030. This endeavor has received support from Open Energy Transition on the modeling side.
 
+## Development status: Active and Stable
+
+[![CI-Linux](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml/badge.svg?branch=main&event=push)](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml)
+![Size](https://img.shields.io/github/repo-size/pypsa-meets-earth/pypsa-kz-data?label=Repo%20size)
+[![License: GPL v3](https://img.shields.io/github/license/pypsa-meets-earth/pypsa-kz-data?label=License&color=orange)](https://www.gnu.org/licenses/gpl-3.0)
+
+
 # pypsa-kz-data
 Extra data for Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
@@ -90,3 +97,16 @@ cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 
 ## Comes in handy:
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
+
+## Acknowledgement
+Code development and testing:<td align="center">
+    <a href="https://openenergytransition.org/about-us.html#team">
+        <b>Open Energy Transition</b>
+    </a>
+</td>
+
+Model assumptions: <td align="center">
+    <a href="https://www.agora-energiewende.de/en/">
+        <b>Agora Energiewende</b>
+    </a>
+</td>
