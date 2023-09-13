@@ -97,3 +97,16 @@ cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv
 
 ## Comes in handy:
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
+
+## Acknowledgement
+Code development and testing:<td align="center">
+    <a href="https://openenergytransition.org/about-us.html#team">
+        <b>Open Energy Transition</b>
+    </a>
+</td>
+
+Model assumptions: <td align="center">
+    <a href="https://www.agora-energiewende.de/en/">
+        <b>Agora Energiewende</b>
+    </a>
+</td>
