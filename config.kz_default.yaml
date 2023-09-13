@@ -133,6 +133,7 @@ electricity:
     onwind: 1e9 # essentially no limit
     offwind-ac: 1e9 # essentially no limit
     offwind-dc: 1e9 # essentially no limit
+    coal: 1e9 # essentially no limit (only relevant for coal exit scenarios)
     ror: 2.133e3 # limit in MW (2030 projection taken from https://kea.kz/storage/app/media/NPA%20NTD/ministra-energetiki-respubliki-kazakhstan-ot-24-marta-2022-goda-104-ob-utverzhdenii-energeticheskogo-balansa-respubliki-ka.pdf)
 
   operational_reserve: # like https://genxproject.github.io/GenX/dev/core/#Reserves
