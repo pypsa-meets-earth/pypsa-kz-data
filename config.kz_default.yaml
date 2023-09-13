@@ -131,6 +131,8 @@ electricity:
   BAU_maxcapacities:
     solar: 1e9 # essentially no limit
     onwind: 1e9 # essentially no limit
+    offwind-ac: 1e9 # essentially no limit
+    offwind-dc: 1e9 # essentially no limit
     ror: 2.133e3 # limit in MW (2030 projection taken from https://kea.kz/storage/app/media/NPA%20NTD/ministra-energetiki-respubliki-kazakhstan-ot-24-marta-2022-goda-104-ob-utverzhdenii-energeticheskogo-balansa-respubliki-ka.pdf)
 
   operational_reserve: # like https://genxproject.github.io/GenX/dev/core/#Reserves
