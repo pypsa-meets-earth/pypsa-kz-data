@@ -6,6 +6,11 @@
 
 Agora Energiewende aims to model the Kazakh power system, incorporating a substantial increase in variable generation, such as solar and wind, surpassing the current official mid-term policy goal of 15% of all renewable energy sources (RES) in generation by 2030. This endeavor has received support from Open Energy Transition on the modeling side.
 
+## Development status: Active and Stable
+
+[![CI-Linux](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml/badge.svg?branch=main&event=push)](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml)
+
+
 # pypsa-kz-data
 Extra data for Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
