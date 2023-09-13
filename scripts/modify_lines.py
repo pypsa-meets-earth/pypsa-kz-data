@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# SPDX-FileCopyrightText:  PyPSA-Earth and PyPSA-Eur Authors
+# SPDX-FileCopyrightText:  pypsa-kz-data authors
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
