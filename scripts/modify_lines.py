@@ -65,6 +65,11 @@ if __name__ == "__main__":
     configure_logging(snakemake)
 
     n = pypsa.Network(snakemake.input.network)
+
+    if "ror" in snakemake.config["electricity"]["extendable_carriers"]["Generator"]:
+        ror_i = n.generators.query("carrier == 'ror'").index
+        n.generators.loc[ror_i, "p_nom_extendable"] = True
+        n.generators.loc[ror_i, "p_nom_min"] = n.generators.loc[ror_i, "p_nom"]
         
     boi = snakemake.config["lines"]["modify_lines"]["bus_of_interest"]
     max_limit = snakemake.config["lines"]["modify_lines"]["max_limit"]
