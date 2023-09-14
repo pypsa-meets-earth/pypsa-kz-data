@@ -16,11 +16,11 @@ Agora Energiewende aims to model the Kazakh power system, incorporating a substa
 
 [![CI-Linux](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml/badge.svg?branch=main&event=push)](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml)
 ![Size](https://img.shields.io/github/repo-size/pypsa-meets-earth/pypsa-kz-data?label=Repo%20size)
-[![License: GPL v3](https://img.shields.io/github/license/pypsa-meets-earth/pypsa-kz-data?label=License&color=orange)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![REUSE status](https://api.reuse.software/badge/github.com/pypsa-meets-earth/pypsa-kz-data)](https://api.reuse.software/info/github.com/pypsa-meets-earth/pypsa-kz-data)
 
 # pypsa-kz-data
-Extra data for Kazakhstan model that will be used as input for PyPSA-Earth.
+Extra data for the Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
 
 ![image](https://user-images.githubusercontent.com/61968949/231397315-bc490876-abb6-45c4-bf01-e26f90c9db93.png)
