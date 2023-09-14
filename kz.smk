@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText:  pypsa-kz-data authors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 
 if config['load_options'].get("rescale_demand", True):
     rule modify_demand:
