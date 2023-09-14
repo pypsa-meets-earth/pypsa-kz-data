@@ -5,6 +5,14 @@ Source: https://github.com/pypsa-meets-earth/pypsa-kz-data
 
 # Sample paragraph, commented out:
 #
-# Files: src/*
-# Copyright: $YEAR $NAME <$CONTACT>
-# License: ...
+Files: data/custom_data/*
+Copyright:  pypsa-kz-data authors
+License: CC-BY-4.0
+
+Files: data/*
+Copyright:  pypsa-kz-data authors
+License: CC-BY-4.0
+
+Files: .github/*
+Copyright:  pypsa-kz-data authors
+License: CC0-1.0
