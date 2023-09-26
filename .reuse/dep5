@@ -1,0 +1,18 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pypsa-kz-data
+Upstream-Contact: pypsa-meets-earth <max.parzen@openenergytransition.org>
+Source: https://github.com/pypsa-meets-earth/pypsa-kz-data
+
+# Sample paragraph, commented out:
+#
+Files: data/custom_data/*
+Copyright:  pypsa-kz-data authors
+License: CC-BY-4.0
+
+Files: data/*
+Copyright:  pypsa-kz-data authors
+License: CC-BY-4.0
+
+Files: .github/*
+Copyright:  pypsa-kz-data authors
+License: CC0-1.0

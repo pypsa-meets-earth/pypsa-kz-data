@@ -1,0 +1,89 @@
+name: CI-Linux
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  schedule:
+  - cron: "0 5 * * TUE"
+
+env:
+  CACHE_NUMBER: 1  # Change this value to manually reset the environment cache
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false  # don't break CI for ubuntu if windows fails before
+      matrix:
+        include:
+          # Matrix required to handle environment caching with Mambaforge
+        - os: ubuntu-latest
+          label: ubuntu-latest
+          prefix: /usr/share/miniconda3/envs/pypsa-earth
+
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download PyPSA-Earth
+      run: |
+        cd ..
+        git clone https://github.com/pypsa-meets-earth/pypsa-earth.git
+
+    - name: Organize folder structure
+      run: |
+        cd ..
+        cp -r pypsa-kz-data ./pypsa-earth/pypsa-kz-data
+
+    - name: Setup Mambaforge
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniforge-variant: Mambaforge
+        miniforge-version: latest
+        activate-environment: pypsa-earth
+        use-mamba: true
+
+    - name: Create environment cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: ${{ matrix.prefix }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles('envs/environment.yaml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+
+    - name: Update environment due to outdated or unavailable cache
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        ls
+        mamba env update -n pypsa-earth -f ../pypsa-earth/envs/environment.yaml
+
+    - name: Conda list
+      run: |
+        conda list
+
+    - name: Move test config
+      run: |
+        cd ../pypsa-earth
+        cp pypsa-kz-data/test/config_kz_test.yaml ./test/config.custom.yaml
+        
+    - name: Create test configs
+      run: |
+        cd ../pypsa-earth
+        snakemake --cores all build_test_configs
+
+    - name: Test pypsa-kz-data workflow
+      run: |
+        cd ../pypsa-earth
+        cp ./test/tmp/config.custom_tmp.yaml ./config.yaml
+        snakemake -j1 retrieve_databundle_light  # we first retrieve data
+        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
+        snakemake -j1 solve_everything
+        
