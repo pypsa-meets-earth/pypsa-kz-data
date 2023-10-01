@@ -103,6 +103,7 @@ jobs:
         cp pypsa-kz-data/config.kz_default.yaml config.default.yaml
         sed -i 's\asia-2013-era5\cutout-2013-era5-tutorial\g' config.default.yaml
         cp pypsa-kz-data/config.kz_default.yaml config.yaml
+        sed -i 's\asia-2013-era5\cutout-2013-era5-tutorial\g' config.yaml
         cat config.yaml
 
     - name: Prepare KZ-scenarios
