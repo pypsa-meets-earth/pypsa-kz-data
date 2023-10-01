@@ -101,12 +101,13 @@ jobs:
       run: |
         cd ../pypsa-earth
         cp pypsa-kz-data/config.kz_default.yaml config.default.yaml
+        sed -i 's\asia-2013-era5\cutout-2013-era5-tutorial\g' config.default.yaml
         cp pypsa-kz-data/config.kz_default.yaml config.yaml
+        cat config.yaml
 
     - name: Prepare KZ-scenarios
       run: |
         cd ../pypsa-earth
-        cat pypsa-kz-data/kz.smk
         snakemake -j1 prepare_kz_scenarios
 
     
