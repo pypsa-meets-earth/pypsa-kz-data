@@ -6,14 +6,14 @@
 tutorial: false
 
 run:
-  name: "kz_test" # use this to keep track of runs with different settings
+  name: "kz_2013_discount10" # use this to keep track of runs with different settings
   shared_cutouts: true  # set to true to share the default cutout(s) across runs
                         # Note: value false requires build_cutout to be enabled
 
 scenario:
   ll: ['v1.0']
   clusters: [14]
-  opts: [RES0.2-1H]
+  opts: [BAU-RES0.2-1H]
 
 
 countries: ["KZ"]
