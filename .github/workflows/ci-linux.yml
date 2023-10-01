@@ -96,7 +96,7 @@ jobs:
       run: |
         cd ../pypsa-earth
         sed -i 's\os.system("snakemake -j all solve_all_networks --rerun-incomplete")\os.system(f"snakemake -j1 networks/{wildcards.scenario_name}/base.nc")\g' Snakefile
-        sed -i 's,os.system("snakemake -j1 make_statistics --force"),os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv")\n\t\tos.system("snakemake -j1 solve_everything --rerun-incomplete"),g' Snakefile
+        sed -i 's,os.system("snakemake -j1 make_statistics --force"),os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv")\n\tos.system("snakemake -j1 solve_everything --rerun-incomplete"),g' Snakefile
         cat Snakefile
 
     - name: Replace Default config
