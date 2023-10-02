@@ -104,6 +104,7 @@ jobs:
         sed -i 's\asia-2013-era5\cutout-2013-era5-tutorial\g' config.default.yaml
         sed -i 's\build_cutout: true\build_cutout: false\g' config.default.yaml
         sed -i 's\end: "2014-01-01"\end: "2013-01-02"\g' config.default.yaml
+        sed -i 's\build_natura_raster: true\build_natura_raster: false\g' config.default.yaml
         cp config.default.yaml config.yaml
         cat config.yaml
 
