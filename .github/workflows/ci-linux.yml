@@ -112,6 +112,7 @@ jobs:
       run: |
         cd ../pypsa-earth
         snakemake -j1 prepare_kz_scenarios
+        cat configs/scenarios/config.kz_2013.yaml
 
     
     - name: Run all scenarios
