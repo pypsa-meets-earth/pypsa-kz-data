@@ -6,7 +6,7 @@
 tutorial: false
 
 run:
-  name: "kz_default_2013" # use this to keep track of runs with different settings
+  name: "kz_2013" # use this to keep track of runs with different settings
   shared_cutouts: true  # set to true to share the default cutout(s) across runs
                         # Note: value false requires build_cutout to be enabled
 
