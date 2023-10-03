@@ -73,7 +73,6 @@ jobs:
       run: |
         cd ../pypsa-earth
         cp pypsa-kz-data/test/config_kz_test1.yaml ./test/config.custom.yaml
-        cp pypsa-kz-data/test/config_kz_test2.yaml ./test/config.tutorial_noprogress.yaml
         cp pypsa-kz-data/test/config_kz_default_test.yaml ./test/config.landlock.yaml
         
     - name: Create test configs
@@ -90,7 +89,6 @@ jobs:
       run: |
         cd ../pypsa-earth
         cp ./test/tmp/config.custom_tmp.yaml pypsa-kz-data/scenarios/config.kz_2013.yaml
-        cp ./test/tmp/config.tutorial_noprogress_tmp.yaml pypsa-kz-data/scenarios/config.kz_2013_discount10.yaml
         cp ./test/tmp/config.landlock_tmp.yaml pypsa-kz-data/config.kz_default.yaml
 
     - name : Change Snakefile lines
