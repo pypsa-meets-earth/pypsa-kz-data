@@ -114,6 +114,5 @@ jobs:
     - name: Run all scenarios
       run: |
         cd ../pypsa-earth
-        cat config.yaml
         snakemake -j1 run_all_scenarios
         
