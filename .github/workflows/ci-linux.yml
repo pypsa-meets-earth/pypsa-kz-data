@@ -101,7 +101,6 @@ jobs:
         cd ../pypsa-earth
         cp pypsa-kz-data/config.kz_default.yaml config.default.yaml
         cp config.default.yaml config.yaml
-        cat config.yaml
 
     - name: Prepare KZ-scenarios
       run: |
