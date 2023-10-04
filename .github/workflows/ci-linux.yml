@@ -55,7 +55,7 @@ jobs:
     - name: Update environment due to outdated or unavailable cache
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        ls
+        ls 
         mamba env update -n pypsa-earth -f ../pypsa-earth/envs/environment.yaml
 
     - name: Conda list
