@@ -17,8 +17,15 @@ jobs:
   build:
     strategy:
       fail-fast: false  # don't break CI for ubuntu if windows fails before
-    name: Run CI Checks
-    runs-on: ubuntu-latest
+      matrix:
+        include:
+          # Matrix required to handle environment caching with Mambaforge
+        - os: ubuntu-latest
+          label: ubuntu-latest
+          prefix: /usr/share/miniconda3/envs/pypsa-earth
+
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
 
     defaults:
       run:
@@ -49,13 +56,13 @@ jobs:
       uses: actions/cache@v2
       id: cache
       with:
-        path: ${{ runner.workspace }}/miniconda3/envs/pypsa-earth
-        key: conda-${{ runner.os }}-${{ hashFiles('envs/environment.yaml') }}-${{ env.CACHE_NUMBER }}
+        path: ${{ matrix.prefix }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles('envs/environment.yaml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
 
     - name: Update environment due to outdated or unavailable cache
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        ls 
+        ls
         mamba env update -n pypsa-earth -f ../pypsa-earth/envs/environment.yaml
 
     - name: Conda list
