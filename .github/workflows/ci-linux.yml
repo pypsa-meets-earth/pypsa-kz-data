@@ -20,8 +20,8 @@ jobs:
       matrix:
         include:
           # Matrix required to handle environment caching with Mambaforge
-        - os: ubuntu-xlarge
-          label: ubuntu-xlarge
+        - os: ubuntu-latest
+          label: ubuntu-latest
           prefix: /usr/share/miniconda3/envs/pypsa-earth
 
     name: ${{ matrix.label }}
