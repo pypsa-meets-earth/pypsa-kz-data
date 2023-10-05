@@ -4,7 +4,7 @@ SPDX-FileCopyrightText:  pypsa-kz-data authors
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
  
-# About the Project
+# About the Project 
 
 <img src="https://github.com/pypsa-meets-earth/pypsa-kz-data/assets/53824825/ca7893de-26e2-47ad-a3e4-d91cd6716652" alt="Open Energy Transition Logo" width="280" height="100" align="right">
 <img src="https://github.com/pypsa-meets-earth/pypsa-kz-data/assets/53824825/63bd0250-c54a-4ce1-8df3-eb116baac01b" alt="Agora Energiewende Logo" width="240" height="100">
