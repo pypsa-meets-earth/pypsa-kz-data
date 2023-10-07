@@ -37,7 +37,7 @@ jobs:
     - name: Download PyPSA-Earth
       run: |
         cd ..
-        git clone https://github.com/pypsa-meets-earth/pypsa-earth.git
+        git clone https://github.com/yerbol-akhmetov/pypsa-earth.git
 
     - name: Organize folder structure
       run: |
