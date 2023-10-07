@@ -88,6 +88,7 @@ jobs:
       run: |
         cd ../pypsa-earth
         cp ./test/tmp/config.custom_tmp.yaml ./config.yaml
+        cat config.yaml
         snakemake -j1 retrieve_databundle_light  # we first retrieve data
         cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
         snakemake -j1 solve_all_networks
