@@ -73,6 +73,12 @@ jobs:
       run: |
         cd ../pypsa-earth
         cp pypsa-kz-data/test/config_kz_test.yaml ./test/config.custom.yaml
+        cd ..
+        ls
+        cd ..
+        ls
+        cd ..
+        ls
         
     - name: Create test configs
       run: |
