@@ -88,5 +88,5 @@ jobs:
         find data -type f
         cat config.yaml
         cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
-        snakemake -j1 solve_all_networks
+        snakemake -j1 solve_everything
         
