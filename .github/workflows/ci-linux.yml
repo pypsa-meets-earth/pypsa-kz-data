@@ -86,6 +86,7 @@ jobs:
         snakemake -j1 retrieve_databundle_light  # we first retrieve data
         cp -r pypsa-kz-data/test/gadm ./data/gadm
         find data -type f
+        cat config.yaml
         cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
         snakemake -j1 solve_everything
         
