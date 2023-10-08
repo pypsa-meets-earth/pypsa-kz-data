@@ -12,8 +12,8 @@ run:
 
 scenario:
   ll: ['v1.0']
-  clusters: [14]
-  opts: [RES0.2-24H]
+  clusters: [5]
+  opts: [RES0.2-12H]
 
 
 countries: ["KZ"]
@@ -38,7 +38,7 @@ cluster_options:
   simplify_network:
     p_threshold_drop_isolated: 10 # [MW] isolated buses are being discarded if bus mean power is below the specified threshold
 
-  alternative_clustering: true  # "False" use Voronoi shapes, "True" use GADM shapes
+  alternative_clustering: false  # "False" use Voronoi shapes, "True" use GADM shapes
 
 
 build_shape_options:
