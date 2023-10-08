@@ -13,7 +13,7 @@ run:
 scenario:
   ll: ['v1.0']
   clusters: [14]
-  opts: [RES0.2-1H]
+  opts: [RES0.2-6H]
 
 
 countries: ["KZ"]
