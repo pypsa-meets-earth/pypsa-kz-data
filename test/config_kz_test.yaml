@@ -12,7 +12,7 @@ run:
 
 scenario:
   ll: ['v1.0']
-  clusters: [5]
+  clusters: [14]
   opts: [RES0.2-12H]
 
 
@@ -38,7 +38,7 @@ cluster_options:
   simplify_network:
     p_threshold_drop_isolated: 10 # [MW] isolated buses are being discarded if bus mean power is below the specified threshold
 
-  alternative_clustering: false  # "False" use Voronoi shapes, "True" use GADM shapes
+  alternative_clustering: true  # "False" use Voronoi shapes, "True" use GADM shapes
 
 
 build_shape_options:
@@ -59,7 +59,8 @@ electricity:
 
   extendable_carriers:
     Generator: [solar, onwind, offwind-ac, offwind-dc]  
-
+  
+  renewable_carriers: [solar, onwind]
 
   custom_powerplants: replace #merge #replace # "false" - no custom powerplants, "merge" use both open source and custom powerplants, "replace" use only custom powerplants
 
