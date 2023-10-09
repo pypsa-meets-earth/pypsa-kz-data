@@ -115,4 +115,4 @@ renewable:
 costs:
   year: 2020
   fill_values:
-    discount rate: 0.15
+    discount rate: 0.15 
