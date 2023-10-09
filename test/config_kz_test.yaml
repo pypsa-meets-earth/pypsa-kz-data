@@ -81,7 +81,7 @@ lines:
 
 
 atlite:
-  nprocesses: 1
+  nprocesses: 8
   cutouts:
     # geographical bounds automatically determined from countries input
     cutout-2013-era5-tutorial:
