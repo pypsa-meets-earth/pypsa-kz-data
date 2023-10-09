@@ -59,8 +59,6 @@ electricity:
 
   extendable_carriers:
     Generator: [solar, onwind, offwind-ac, offwind-dc]  
-  
-  renewable_carriers: [solar, onwind]
 
   custom_powerplants: replace #merge #replace # "false" - no custom powerplants, "merge" use both open source and custom powerplants, "replace" use only custom powerplants
 
