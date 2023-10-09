@@ -12,8 +12,8 @@ run:
 
 scenario:
   ll: ['v1.0']
-  clusters: [14]
-  opts: [BAU-RES0.2-1H, BAU-RES0.25-1H, BAU-RES0.3-1H, BAU-RES0.35-1H, BAU-RES0.4-1H]
+  clusters: [5]
+  opts: [BAU-RES0.2-6H]
 
 
 countries: ["KZ"]
@@ -44,7 +44,7 @@ cluster_options:
 build_shape_options:
   nprocesses: 1  # number of processes to be used in build_shapes
   nchunks: 10  # number of data chuncks for build_shapes. If not specified or smaller than nprocesses, specified as nprocesses
-
+  gadm_layer_id: 0
 
 load_options:
   rescale_demand: true
