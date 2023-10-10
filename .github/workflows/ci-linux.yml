@@ -26,6 +26,7 @@ jobs:
 
     name: ${{ matrix.label }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
 
     defaults:
       run:
