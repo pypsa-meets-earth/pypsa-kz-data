@@ -44,7 +44,7 @@ cluster_options:
 build_shape_options:
   nprocesses: 1  # number of processes to be used in build_shapes
   nchunks: 3  # number of data chuncks for build_shapes. If not specified or smaller than nprocesses, specified as nprocesses
-
+  gadm_layer_id: 0
 
 load_options:
   rescale_demand: true
@@ -81,7 +81,7 @@ lines:
 
 
 atlite:
-  nprocesses: 4
+  nprocesses: 1
   cutouts:
     # geographical bounds automatically determined from countries input
     cutout-2013-era5-tutorial:
