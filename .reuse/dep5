@@ -16,3 +16,7 @@ License: CC-BY-4.0
 Files: .github/*
 Copyright:  pypsa-kz-data authors
 License: CC0-1.0
+
+Files: test/gadm/*
+Copyright:  pypsa-kz-data authors
+License: CC-BY-4.0
