@@ -3,10 +3,10 @@ name: CI-Linux
 on:
   push:
     branches:
-    - scenario_management
+    - main
   pull_request:
     branches:
-    - scenario_management
+    - main
   schedule:
   - cron: "0 5 * * TUE"
 
