@@ -12,8 +12,8 @@ run:
 
 scenario:
   ll: ['v1.0']
-  clusters: [14]
-  opts: [RES0.2-1H]
+  clusters: [5]
+  opts: [RES0.2-6H]
 
 
 countries: ["KZ"]
@@ -38,13 +38,13 @@ cluster_options:
   simplify_network:
     p_threshold_drop_isolated: 10 # [MW] isolated buses are being discarded if bus mean power is below the specified threshold
 
-  alternative_clustering: true #false  # "False" use Voronoi shapes, "True" use GADM shapes
+  alternative_clustering: false  # "False" use Voronoi shapes, "True" use GADM shapes
 
 
 build_shape_options:
   nprocesses: 1  # number of processes to be used in build_shapes
   nchunks: 3  # number of data chuncks for build_shapes. If not specified or smaller than nprocesses, specified as nprocesses
-
+  gadm_layer_id: 0  # set gadm level to 0 to simplify the case
 
 load_options:
   rescale_demand: true
