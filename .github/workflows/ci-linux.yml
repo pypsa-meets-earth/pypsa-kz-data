@@ -3,10 +3,10 @@ name: CI-Linux
 on:
   push:
     branches:
-    - main
+    - scenario_management
   pull_request:
     branches:
-    - main
+    - scenario_management
   schedule:
   - cron: "0 5 * * TUE"
 
@@ -72,20 +72,47 @@ jobs:
     - name: Move test config
       run: |
         cd ../pypsa-earth
-        cp pypsa-kz-data/test/config_kz_test.yaml ./test/config.custom.yaml
+        cp pypsa-kz-data/test/config_kz_default_test.yaml ./test/config.landlock.yaml
         
     - name: Create test configs
       run: |
         cd ../pypsa-earth
         snakemake --cores all build_test_configs
 
-    - name: Test pypsa-kz-data workflow
+    - name: Clean scenarios folder
       run: |
         cd ../pypsa-earth
-        cp ./test/tmp/config.custom_tmp.yaml ./config.yaml
-        snakemake -j1 retrieve_databundle_light  # we first retrieve data
+        rm -r pypsa-kz-data/scenarios/*
+
+    - name: Move test configs to scenario folder
+      run: |
+        cd ../pypsa-earth
+        cp pypsa-kz-data/test/config_kz_test1.yaml pypsa-kz-data/scenarios/config.kz_2013.yaml
+        cp ./test/tmp/config.landlock_tmp.yaml pypsa-kz-data/config.kz_default.yaml
+
+    - name : Change Snakefile lines
+      run: |
+        cd ../pypsa-earth
+        sed -i 's\os.system("snakemake -j all solve_all_networks --rerun-incomplete")\os.system(f"snakemake -j1 networks/{wildcards.scenario_name}/base.nc")\g' Snakefile
+        sed -i 's,os.system("snakemake -j1 make_statistics --force"),os.system("cp pypsa-kz-data/data/custom_powerplants.csv data/custom_powerplants.csv")\n\tos.system("snakemake -j1 solve_all_networks --rerun-incomplete"),g' Snakefile
+        cat Snakefile
+
+    - name: Replace Default config
+      run: |
+        cd ../pypsa-earth
+        cp pypsa-kz-data/config.kz_default.yaml config.default.yaml
+        cp config.default.yaml config.yaml
+
+    - name: Prepare KZ-scenarios
+      run: |
+        cd ../pypsa-earth
+        snakemake -j1 prepare_kz_scenarios
         cp -r pypsa-kz-data/test/gadm ./data/gadm
         find data -type f
-        cp pypsa-kz-data/data/custom_powerplants.csv ./data/custom_powerplants.csv  # overwrite powerplantdata
-        snakemake -j1 solve_all_networks
+        cat configs/scenarios/config.kz_2013.yaml
+    
+    - name: Run all scenarios
+      run: |
+        cd ../pypsa-earth
+        snakemake -j1 run_all_scenarios
         

@@ -7,7 +7,7 @@ run:
 
 scenario:
   ll: ['v1.0','copt']
-  opts: [1H, RES0.4-1H]
+  opts: [BAU-1H, BAU-RES0.4-1H]
 
 snapshots:
   start: "2013-01-01"
@@ -15,10 +15,11 @@ snapshots:
 
 load_options:
   weather_year: 2013  # Load scenarios available with different weather year (different renewable potentials)
+  scale: 1.3705
 
 electricity:
   extendable_carriers:
-    Generator: [solar, onwind, offwind-ac, offwind-dc, coal]
+    Generator: [solar, onwind, offwind-ac, offwind-dc, coal, ror]
     Store: [battery, H2]
 
 atlite:

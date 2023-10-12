@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 run:
-  name: "kz_2011_discount20" # use this to keep track of runs with different settings
+  name: "kz_2011_discount10" # use this to keep track of runs with different settings
 
 snapshots:
   start: "2011-01-01"
@@ -11,10 +11,11 @@ snapshots:
 
 load_options:
   weather_year: 2011  # Load scenarios available with different weather year (different renewable potentials)
+  scale_kz: 1.3705
 
 electricity:
   extendable_carriers:
-    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    Generator: [solar, onwind, offwind-ac, offwind-dc, ror]
     Store: [battery, H2]
 
 atlite:
@@ -40,5 +41,5 @@ renewable:
 
 costs:
   fill_values:
-    discount rate: 0.2
+    discount rate: 0.1
 

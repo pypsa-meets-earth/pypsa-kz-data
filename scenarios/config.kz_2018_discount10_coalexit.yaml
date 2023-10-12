@@ -3,7 +3,11 @@
 # SPDX-License-Identifier: CC0-1.0
 
 run:
-  name: "kz_2018_discount10" # use this to keep track of runs with different settings
+  name: "kz_2018_discount10_coalexit" # use this to keep track of runs with different settings
+
+scenario:
+  ll: ['v1.0','copt']
+  opts: [BAU-1H, BAU-RES0.4-1H]
 
 snapshots:
   start: "2018-01-01"
@@ -11,10 +15,11 @@ snapshots:
 
 load_options:
   weather_year: 2018  # Load scenarios available with different weather year (different renewable potentials)
+  scale: 1.3705
 
 electricity:
   extendable_carriers:
-    Generator: [solar, onwind, offwind-ac, offwind-dc]
+    Generator: [solar, onwind, offwind-ac, offwind-dc, coal, ror]
     Store: [battery, H2]
 
 atlite:

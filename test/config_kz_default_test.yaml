@@ -6,17 +6,18 @@
 tutorial: false
 
 run:
-  name: "kz_test" # use this to keep track of runs with different settings
+  name: "kz_2013_default" # use this to keep track of runs with different settings
   shared_cutouts: true  # set to true to share the default cutout(s) across runs
                         # Note: value false requires build_cutout to be enabled
 
 scenario:
   ll: ['v1.0']
   clusters: [5]
-  opts: [RES0.2-6H]
+  opts: [BAU-RES0.2-6H]
 
 
 countries: ["KZ"]
+
 
 snapshots:
   start: "2013-01-01"
@@ -45,6 +46,7 @@ build_shape_options:
   nprocesses: 1  # number of processes to be used in build_shapes
   nchunks: 3  # number of data chuncks for build_shapes. If not specified or smaller than nprocesses, specified as nprocesses
   gadm_layer_id: 0  # set gadm level to 0 to simplify the case
+
 
 load_options:
   rescale_demand: true

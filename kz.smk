@@ -94,3 +94,12 @@ rule solve_everything:
             ["results/" + RDIR + "networks/elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_dle.nc"],
             **config["scenario"]
         ),
+
+
+rule prepare_kz_scenarios:
+    run:
+        import os
+        os.system("rm configs/scenarios/config.NG.yaml")
+        os.system("cp -r pypsa-kz-data/scenarios/ configs/")
+        os.system("snakemake -j1 retrieve_databundle_light")
+
