@@ -4,10 +4,16 @@
 
 
 if config['load_options'].get("rescale_demand", True):
+    try:
+        if config['year'] == 2022:
+            filepath_demand = "pypsa-kz-data/data/official_demand_2022.csv"
+    except:
+        filepath_demand = "pypsa-kz-data/data/official_demand.csv"
+
     rule modify_demand:
         input:
             network="networks/" + RDIR + "elec_s{simpl}_{clusters}_ec_l{ll}_{opts}.nc",
-            gadm_demand_data="pypsa-kz-data/data/official_demand.csv",
+            gadm_demand_data=filepath_demand,
         output:
             network="networks/" + RDIR + "elec_s{simpl}_{clusters}_ec_l{ll}_{opts}_d.nc",
         script:
