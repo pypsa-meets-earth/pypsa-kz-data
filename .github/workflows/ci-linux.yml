@@ -107,6 +107,7 @@ jobs:
       run: |
         cd ../pypsa-earth
         snakemake -j1 prepare_kz_scenarios
+        mkdir -p ./data/gadm
         cp -r pypsa-kz-data/test/gadm ./data/gadm
         find data -type f
         cat configs/scenarios/config.kz_2013.yaml
