@@ -12,6 +12,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 Agora Energiewende aims to model the Kazakh power system, incorporating a substantial increase in variable generation, such as solar and wind, surpassing the current official mid-term policy goal of 15% of all renewable energy sources (RES) in generation by 2030. This endeavor has received support from Open Energy Transition on the modeling side.
 
+Used for [2024 study](https://www.agora-energiewende.org/publications/modernising-kazakhstans-coal-dependent-power-sector-through-renewables), "Modernising Kazakhstan’s coal-dependent power sector through renewables - Challenges, solutions and scenarios up to 2030 and beyond"
+
 ## Development status: Active and Stable
 
 [![CI-Linux](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml/badge.svg?branch=main)](https://github.com/pypsa-meets-earth/pypsa-kz-data/actions/workflows/ci-linux.yml)
