@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-version: 1.0.0
+version: 0.3.0
 tutorial: false
 
 logging:
@@ -29,11 +29,11 @@ snapshots:
   inclusive: "left" # end is not inclusive
 
 enable:
-  retrieve_databundle: true  #  Recommended 'true', for the first run. Otherwise data might be missing.
+  retrieve_databundle: false  #  Recommended 'true', for the first run. Otherwise data might be missing.
   retrieve_cost_data: true  # true: retrieves cost data from technology data and saves in resources/costs.csv, false: uses cost data in data/costs.csv
   download_osm_data: true  # If 'true', OpenStreetMap data will be downloaded for the above given countries
   build_natura_raster: true  # If True, than an exclusion raster will be build
-  build_cutout: true
+  build_cutout: true 
   # If "build_cutout" : true, then environmental data is extracted according to `snapshots` date range and `countries`
   # requires cds API key https://cds.climate.copernicus.eu/api-how-to
   # More information https://atlite.readthedocs.io/en/latest/introduction.html#datasets
@@ -101,6 +101,12 @@ clean_osm_data_options:  # osm = OpenStreetMap
   tag_substation: "transmission"  # Filters only substations with 'transmission' tag, ('distribution' also available)
   add_line_endings: true  # When "True", then line endings are added to the dataset of the substations
   generator_name_method: OSM  # Methodology to specify the name to the generator. Options: OSM (name as by OSM dataset), closest_city (name by the closest city)
+  use_custom_lines: "OSM_only"  # Use OSM (OSM_only), customized (custom_only), or both data sets (add_custom)
+  path_custom_lines: false  # If exists, provide the specific absolute path of the custom file e.g. (...\data\custom_lines.geojson)
+  use_custom_substations: "OSM_only"  # Use OSM (OSM_only), customized (custom_only), or both data sets (add_custom)
+  path_custom_substations: false  # If exists, provide the specific absolute path of the custom file e.g. (...\data\custom_substations.geojson)
+  use_custom_cables: "OSM_only"  # Use OSM (OSM_only), customized (custom_only), or both data sets (add_custom)
+  path_custom_cables: false  # If exists, provide the specific absolute path of the custom file e.g. (...\data\custom_cables.geojson)
 
 build_osm_network:  # Options of the build_osm_network script; osm = OpenStreetMap
   group_close_buses: true  # When "True", close buses are merged and guarantee the voltage matching among line endings
@@ -128,6 +134,8 @@ electricity:
   co2base: 3.17e+8  # Kazakhstan default for 1990
   agg_p_nom_limits: data/agg_p_nom_minmax.csv
   hvdc_as_lines: false  # should HVDC lines be modeled as `Line` or as `Link` component?
+  automatic_emission: false
+  automatic_emission_base_year: 1990 # 1990 is taken as default. Any year from 1970 to 2018 can be selected.
   BAU_maxcapacities:
     solar: 1e9 # essentially no limit
     onwind: 1e9 # essentially no limit
@@ -170,11 +178,12 @@ electricity:
       PV: [solar]
 
 lines:
-  types:
+  ac_types:
     220.: "490-AL1/64-ST1A 220.0"             #"Al/St 240/40 2-bundle 220.0"
     110.: "243-AL1/39-ST1A 110.0"             #"Al/St 240/40 3-bundle 300.0"
     500.: "Al/St 240/40 4-bundle 380.0"       #"Al/St 560/50 4-bundle 750.0"       #
-  dc_type: "HVDC XLPE 1000"
+  dc_types:
+    500.: "HVDC XLPE 1000"
   s_max_pu: 0.7
   s_nom_max: .inf
   length_factor: 1.25
@@ -297,9 +306,10 @@ renewable:
     extendable: true
   hydro:
     cutout: asia-2013-era5
+    hydrobasins_level: 6
     resource:
       method: hydro
-      hydrobasins: data/hydrobasins/hybas_world_lev06_v1c.shp
+      hydrobasins: data/hydrobasins/hybas_world.shp
       flowspeed: 1.0  # m/s
       # weight_with_height: false
       # show_progress: true
@@ -369,15 +379,15 @@ solving:
     track_iterations: false
     #nhours: 10
   solver:
-    name: gurobi
+    name: cplex
     threads: 4
-    method: 2 # barrier (=ipm)
-    crossover: 0
-    BarConvTol: 1.e-5
-    FeasibilityTol: 1.e-6
-    AggFill: 0
-    PreDual: 0
-    GURO_PAR_BARDENSETHRESH: 200
+    lpmethod: 4 # barrier (=ipm)
+    solutiontype: 2 # non basic solution, ie no crossover
+    barrier.convergetol: 1.e-5
+    feasopt.tolerance: 1.e-6
+    # AggFill: 0
+    # PreDual: 0
+    # GURO_PAR_BARDENSETHRESH: 200
 
 
 plotting:
@@ -440,13 +450,21 @@ plotting:
     "electricity": "#f9d002"
     "lines": "#70af1d"
     "transmission lines": "#70af1d"
+    "AC": "#70af1d"
     "AC-AC": "#70af1d"
     "AC line": "#70af1d"
     "links": "#8a1caf"
     "HVDC links": "#8a1caf"
+    "DC": "#8a1caf"
     "DC-DC": "#8a1caf"
     "DC link": "#8a1caf"
-    "load": "#FF0000"
+    "load": "#ff0000"
+    "load shedding": "#ff0000"
+    "battery discharger": slategray
+    "battery charger": slategray
+    "h2 fuel cell": '#c251ae'
+    "h2 electrolysis": '#ff29d9'
+    "csp": "#fdd404"
   nice_names:
     OCGT: "Open-Cycle Gas"
     CCGT: "Combined-Cycle Gas"
