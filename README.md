@@ -42,7 +42,7 @@ Monthly electricity demand data with monthly aggregation provided by Kazakhstan 
 
 ## Setting up the general repositories
 
-The provided workflow builds on [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth). Therefore, first, the PyPSA-Earth repository must be forked and the fork should then be cloned. A fork can be created by navigating to the [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) website. By clicking on the fork-symbol in the upper right corner, a fork is created and linked to the specific user.
+The provided workflow builds on [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth). Therefore, first, the PyPSA-Earth repository must be forked and the fork should then be cloned. A fork can be created by navigating to the [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) website. By clicking on the fork-symbol in the upper right corner, a fork is created and linked to the specific user. While making a fork, unclick `Copy the main branch only` option to fork all branches and tags of `pypsa-earth` repository.
 
 Next, we also need to fork the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) repository. A fork can be created by navigating to the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) website and clicking the fork symbol in the upper right corner.
 
@@ -56,7 +56,11 @@ After that, one must change to the freshly created pypsa-earth repository.
 ```bash
 cd pypsa-earth/
 ```
-and repeat the cloning, this time for the pypsa-kz-data repository.
+Switch to the stable `v0.4.0` version of `pypsa-earth` that is compatible with `pypsa-kz-data` repository:
+```bash
+git checkout tags/v0.4.0
+```
+Repeat the cloning, this time for the pypsa-kz-data repository.
 ```bash
 git clone https://github.com/<user-name>/pypsa-kz-data
 ```
@@ -72,7 +76,7 @@ conda activate pypsa-earth
 
 To adapt the overall workflow for kz, only two further changes are necessary.
 
-Firstly, open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
+Firstly, open the Snakefile (in `pypsa-earth/`) and navigate to line [1071-1072](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
 ```bash
 os.system("snakemake -j all solve_all_networks --rerun-incomplete")
 os.system("snakemake -j1 make_statistics --force")
@@ -92,7 +96,7 @@ In case you already have a custom config file, make sure to replace it as well, 
 ```bash
 cp pypsa-kz-data/config.kz_default.yaml config.yaml
 ```
-
+**Note!** Run two aforementioned commands in `pypsa-earth` directory.
 You are now all set to run all scenarios!
 
 ## Running KZ scenarios
