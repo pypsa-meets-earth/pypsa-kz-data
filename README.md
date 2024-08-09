@@ -21,7 +21,10 @@ Used for [2024 study](https://www.agora-energiewende.org/publications/modernisin
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![REUSE status](https://api.reuse.software/badge/github.com/pypsa-meets-earth/pypsa-kz-data)](https://api.reuse.software/info/github.com/pypsa-meets-earth/pypsa-kz-data)
 
-# pypsa-kz-data
+# PyPSA-KZ-Data
+
+<img src="https://github.com/user-attachments/assets/cced2eb3-7d14-4f21-ae1a-2e0ca9174ea6" alt="Kazakhstan Generation Capacities">
+
 Extra data for the Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
 
