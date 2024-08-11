@@ -21,7 +21,10 @@ Used for [2024 study](https://www.agora-energiewende.org/publications/modernisin
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![REUSE status](https://api.reuse.software/badge/github.com/pypsa-meets-earth/pypsa-kz-data)](https://api.reuse.software/info/github.com/pypsa-meets-earth/pypsa-kz-data)
 
-# pypsa-kz-data
+# PyPSA-KZ-Data
+
+<img src="https://github.com/user-attachments/assets/cced2eb3-7d14-4f21-ae1a-2e0ca9174ea6" alt="Kazakhstan Generation Capacities">
+
 Extra data for the Kazakhstan model that will be used as input for PyPSA-Earth.
 Repo design oriented on: https://github.com/pypsa-meets-earth/pypsa-zm-data
 
@@ -42,7 +45,7 @@ Monthly electricity demand data with monthly aggregation provided by Kazakhstan 
 
 ## Setting up the general repositories
 
-The provided workflow builds on [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth). Therefore, first, the PyPSA-Earth repository must be forked and the fork should then be cloned. A fork can be created by navigating to the [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) website. By clicking on the fork-symbol in the upper right corner, a fork is created and linked to the specific user.
+The provided workflow builds on [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth). Therefore, first, the PyPSA-Earth repository must be forked and the fork should then be cloned. A fork can be created by navigating to the [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) website. By clicking on the fork-symbol in the upper right corner, a fork is created and linked to the specific user. While making a fork, unclick `Copy the main branch only` option to fork all branches and tags of `pypsa-earth` repository.
 
 Next, we also need to fork the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) repository. A fork can be created by navigating to the [pypsa-kz-data](https://github.com/pypsa-meets-earth/pypsa-kz-data) website and clicking the fork symbol in the upper right corner.
 
@@ -56,7 +59,11 @@ After that, one must change to the freshly created pypsa-earth repository.
 ```bash
 cd pypsa-earth/
 ```
-and repeat the cloning, this time for the pypsa-kz-data repository.
+Switch to the stable `v0.4.0` version of `pypsa-earth` that is compatible with `pypsa-kz-data` repository:
+```bash
+git checkout tags/v0.4.0
+```
+Repeat the cloning, this time for the pypsa-kz-data repository.
 ```bash
 git clone https://github.com/<user-name>/pypsa-kz-data
 ```
@@ -72,7 +79,7 @@ conda activate pypsa-earth
 
 To adapt the overall workflow for kz, only two further changes are necessary.
 
-Firstly, open the Snakefile (in `pypsa-earth/`) and navigate to line [1057-1058](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
+Firstly, open the Snakefile (in `pypsa-earth/`) and navigate to line [1071-1072](https://github.com/pypsa-meets-earth/pypsa-earth/blob/main/Snakefile#L1057-L1058), which should read
 ```bash
 os.system("snakemake -j all solve_all_networks --rerun-incomplete")
 os.system("snakemake -j1 make_statistics --force")
@@ -92,7 +99,7 @@ In case you already have a custom config file, make sure to replace it as well, 
 ```bash
 cp pypsa-kz-data/config.kz_default.yaml config.yaml
 ```
-
+**Note!** Run two aforementioned commands in `pypsa-earth` directory.
 You are now all set to run all scenarios!
 
 ## Running KZ scenarios
@@ -131,6 +138,8 @@ snakemake -j 1 retrieve_databundle_light
 ```
 
 - The rule `retrieve_databundle_light` always executes with an error. To avoid this, try setting `enable: build_cutout: False` to `True`.
+
+- Hydrobasins data might not be accessible in some regions (e.g. in Kazakhstan). It is recommended to retrieve the databundle using VPN. 
 
 # Comes in handy
 After all cutouts were generated (i.e. the three files `asia-<year>-era5.nc` exist in the folder `pypsa-earth/cutouts/`, where `<year>` is 2011, 2013, and 2018, navigate to `pypsa-earth/pypsa-kz-data`, open the default config file, navigate to line 36, which should read `build_cutout: True`, and set it to `build_cutout: false`. This will save you a lot of time when (re-)runnig scenarios. But remember to set it back to `true` in case one of the cutouts was deleted!
